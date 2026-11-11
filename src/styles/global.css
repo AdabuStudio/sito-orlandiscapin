@@ -482,3 +482,13 @@ a { color: var(--color-text); text-decoration-color: var(--os-pencil); text-unde
 /* Ancore sotto l'header fisso */
 [id] { scroll-margin-top: 90px; }
 @media (prefers-reduced-motion: reduce) { .os-hero__slide { transition: none; } .os-project__shot img { transition: none; } }
+
+/* Editor mockup (solo anteprime, EDITOR_PASSWORD): colori di Orlandi & Scapin.
+   editor.js legge i token --aut-*; html:root vince su quelli che inietta. Barra inchiostro, guide rosso matita, angoli netti. */
+html:root { --aut-primary: #1A1A1A; --aut-on-primary: #fff; --aut-accent: #B5322A; --aut-text: #1A1A1A; --aut-bg: #fff; --aut-font: var(--font-body); }
+html body .aut-btn, html body .aut-views { border-radius: 2px; }
+html body .aut-btn:not(.aut-btn--ghost):hover, html body .aut-viewbtn.on { background: #B5322A; color: #fff; }
+html body.aut-on [data-aut].aut-sel { outline-color: #B5322A; }
+html body.aut-on [data-aut]:hover { outline-color: rgb(110 135 150 / .7); }
+/* La barra a riposo sta sopra il footer, dopo la sezione Contatti (anch'essa scura): filo rosso per distinguerla. */
+html body .aut-bar:not(.editing) { border-top: 3px solid #B5322A; }
