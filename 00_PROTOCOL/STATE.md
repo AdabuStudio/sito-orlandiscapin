@@ -2,7 +2,7 @@
 
 Last updated: 2026-11-11
 Last verified commit: TO VERIFY
-Last agent: new-client-site (onboarding)
+Last agent: Claude Code (desktop, Windows) — onboarding
 
 ## Summary
 
@@ -28,21 +28,23 @@ pubblicato su Cloudflare Workers con file statici. Tipo di lavoro: Tipo 2 — re
 
 ## Current working features
 
-- TO VERIFY
+- Repo inizializzato (init-client, Tipo 2, static, modulo contatti → info@orlandiscapin.it). Contenuti ancora quelli di esempio del template.
+- Repo GitHub **pubblico** `AdabuStudio/sito-orlandiscapin`, ramo di lavoro `staging`.
 
 ## Partially implemented
 
-- TO VERIFY
+- Direzione grafica proposta in `docs/DESIGN.md` (GATE 1 da approvare). Inventario del vecchio sito in `materiale/export-horizons/inventario.md`.
 
 ## Known issues
 
-- TO VERIFY
+- Su Windows `npm test` va lanciato con `--script-shell` di Git Bash; `check:prod-clean` va in crash (assert libuv di Node 24 su `npx astro build`), sulla CI Linux no.
+- Worker Cloudflare e secret `CLOUDFLARE_API_TOKEN` non ancora creati: il deploy delle anteprime si salta.
 
 ## Infrastructure / External services
 
 - Cloudflare Worker: `orlandiscapin` (uno solo). `main` → produzione; `staging` e rami → anteprime dello stesso Worker
   (`https://<ramo>-orlandiscapin.<sottodominio>.workers.dev`). Accessi: `docs/CLOUDFLARE-ACCESS.md`.
-- Tracciamento: {{TRACCIAMENTO}}
+- Tracciamento: nessuno per ora (da decidere prima del go-live).
 
 ## Development
 

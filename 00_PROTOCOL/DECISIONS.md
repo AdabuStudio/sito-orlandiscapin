@@ -11,3 +11,5 @@ Formato: data · decisione · perché · Status (accepted | inferred | supersede
 - 2026-11-11 · Nessun tracciamento per ora (iubenda/GTM/BlackBox da decidere prima del go-live) · scelta di Federico · Status: accepted
 - 2026-11-11 · `astro.config.mjs`: percorso dell'editor staging con `fileURLToPath` (con `URL.pathname` la build di staging falliva su Windows) · fix locale, da riportare sul ramo `v2-astro-riferimento` · Status: accepted
 - Direzione grafica (GATE 1): DA APPROVARE.
+- 2026-11-11 · Repo GitHub **pubblico** · richiesta esplicita di Federico · Status: accepted
+- 2026-11-11 · Materiale grezzo del cliente (`materiale/CASE FOTOGRAFATE/`, PDF, foto uffici) fuori da Git; nel sito solo copie con nomi neutri, mai nomi dei proprietari delle case · il repo è pubblico e le cartelle portano nomi di privati · Status: accepted
