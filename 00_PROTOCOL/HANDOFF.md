@@ -3,14 +3,11 @@
 Data: 2026-11-11 · Ramo: `staging`
 
 ## Fatto
-- Repo cliente creato dal template v2, `init-client` (Tipo 2, static, contatti → info@orlandiscapin.it), pubblicato su `AdabuStudio/sito-orlandiscapin` (pubblico), ramo `staging`.
-- Inventario sito Horizons: `materiale/export-horizons/inventario.md`.
-- Loghi (7 varianti) in `materiale/logo/` (versionati). Foto lavori e ufficio in `materiale/` (NON versionate).
-- Proposta di direzione grafica "Tavola tecnica" in `docs/DESIGN.md`.
+- Sito costruito secondo `docs/DESIGN.md` (GATE 1 approvato da Federico): vedi STATE.md.
+- Foto dei lavori copiate da `materiale/` (non versionato) in `src/assets/images/lavori/` con nomi neutri `lavoro-NN-MM.jpg`
+  (01 = recupero casa rurale, 02 = casa colonica, 03 = casa con portico, 04 = villa con porticato, 05 = casa unifamiliare). Mai nomi dei proprietari.
+- `npm run build` verde, QA (`node qa/screenshot.mjs`) 0 problemi, validate-seo ok.
+- Worker `orlandiscapin` e secret `CLOUDFLARE_API_TOKEN` creati da Federico: le anteprime si pubblicano da sole.
 
 ## Prossimo passo
-- Attendere l'approvazione del GATE 1 (`docs/DESIGN.md`). Poi: font @fontsource (Archivo, Inter), token in `site.json`, contenuti in `src/content/pages/`, foto in `src/assets/images/lavori/` con nomi neutri, favicon/og (`npm run assets`), build, QA, PR draft.
-
-## Aperto (umano)
-- Worker `orlandiscapin` + token per-Worker + secret `CLOUDFLARE_API_TOKEN` (docs/ONBOARDING-CLIENTE.md).
-- Cartella ClickUp del cliente (connettore ClickUp non autenticato in questa sessione).
+- Federico manda l'anteprima al cliente e raccoglie le conferme di TASKS.md; poi go-live.

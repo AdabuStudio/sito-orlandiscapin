@@ -74,3 +74,48 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   reveals.forEach(function (el) { io.observe(el); });
 })();
+
+/* Orlandi & Scapin: slider dell'hero e lightbox dei lavori (progressive enhancement). */
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('[data-slider]').forEach(function (root) {
+    var slides = root.querySelectorAll('.os-hero__slide');
+    var dots = root.querySelectorAll('.os-hero__dot');
+    if (slides.length < 2) return;
+    var i = 0, timer;
+    var show = function (n) {
+      slides[i].classList.remove('is-active'); slides[i].setAttribute('aria-hidden', 'true');
+      if (dots[i]) dots[i].classList.remove('is-active');
+      i = (n + slides.length) % slides.length;
+      var img = slides[i].querySelector('img'); if (img) img.loading = 'eager';
+      slides[i].classList.add('is-active'); slides[i].removeAttribute('aria-hidden');
+      if (dots[i]) dots[i].classList.add('is-active');
+    };
+    var start = function () { if (!reduce) { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 5500); } };
+    dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); start(); }); });
+    root.addEventListener('mouseenter', function () { clearInterval(timer); });
+    root.addEventListener('mouseleave', start);
+    start();
+  });
+
+  var dlg = document.querySelector('.os-lightbox');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var shots = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+  var big = dlg.querySelector('.os-lightbox__img'), cap = dlg.querySelector('.os-lightbox__caption'), cur = 0;
+  var open = function (n) {
+    cur = (n + shots.length) % shots.length;
+    var img = shots[cur].querySelector('img');
+    var src = img.currentSrc || img.src;
+    if (img.srcset) { var last = img.srcset.split(',').pop().trim().split(' ')[0]; if (last) src = last; }
+    big.src = src; big.alt = img.alt; cap.textContent = img.alt;
+    if (!dlg.open) dlg.showModal();
+  };
+  shots.forEach(function (b, n) { b.addEventListener('click', function () { open(n); }); });
+  dlg.querySelector('.os-lightbox__close').addEventListener('click', function () { dlg.close(); });
+  dlg.querySelector('.os-lightbox__nav--prev').addEventListener('click', function () { open(cur - 1); });
+  dlg.querySelector('.os-lightbox__nav--next').addEventListener('click', function () { open(cur + 1); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') open(cur - 1); if (e.key === 'ArrowRight') open(cur + 1); });
+})();

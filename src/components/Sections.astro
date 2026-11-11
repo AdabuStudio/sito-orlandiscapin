@@ -7,11 +7,14 @@ import StatBand from './blocks/StatBand.astro'; import Timeline from './blocks/T
 import Map from './blocks/Map.astro'; import Locations from './blocks/Locations.astro'; import Services from './blocks/Services.astro';
 import Events from './blocks/Events.astro'; import Notices from './blocks/Notices.astro'; import PostList from './blocks/PostList.astro';
 import ContactForm from './blocks/ContactForm.astro';
+import OsHero from './blocks/os/Hero.astro'; import OsStudio from './blocks/os/Studio.astro'; import OsLavori from './blocks/os/Lavori.astro';
+import OsNumeri from './blocks/os/Numeri.astro'; import OsContatti from './blocks/os/Contatti.astro';
 
 const blocks: Record<Section['type'], any> = {
   hero: Hero, text: Text, 'feature-grid': FeatureGrid, gallery: Gallery, cta: Cta, logos: Logos, faq: Faq, steps: Steps,
   contact: Contact, 'stat-band': StatBand, timeline: Timeline, split: Split, map: Map, locations: Locations,
   services: Services, events: Events, notices: Notices, 'post-list': PostList, 'contact-form': ContactForm,
+  'os-hero': OsHero, 'os-studio': OsStudio, 'os-lavori': OsLavori, 'os-numeri': OsNumeri, 'os-contatti': OsContatti,
 };
 /** `lang` arriva a ogni blocco: serve a filtrare le collezioni e a scegliere i testi dell'interfaccia. */
 const { sections, lang } = Astro.props as { sections: Section[]; lang: string };

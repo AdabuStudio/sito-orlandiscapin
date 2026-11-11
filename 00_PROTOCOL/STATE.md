@@ -1,7 +1,7 @@
 # Project State
 
 Last updated: 2026-11-11
-Last verified commit: TO VERIFY
+Last verified commit: (commit di questa sessione su staging)
 Last agent: Claude Code (desktop, Windows) — onboarding
 
 ## Summary
@@ -28,17 +28,19 @@ pubblicato su Cloudflare Workers con file statici. Tipo di lavoro: Tipo 2 — re
 
 ## Current working features
 
-- Repo inizializzato (init-client, Tipo 2, static, modulo contatti → info@orlandiscapin.it). Contenuti ancora quelli di esempio del template.
-- Repo GitHub **pubblico** `AdabuStudio/sito-orlandiscapin`, ramo di lavoro `staging`.
+- Sito a pagina unica costruito (Tipo 2, direzione "Tavola tecnica" approvata): hero con slider di foto vere, Lo studio + 8 servizi, Lavori (5 interventi, 26 foto, galleria con lightbox), Team + numeri con linee di quota, Contatti con modulo (Worker → info@orlandiscapin.it; nelle anteprime solo prova).
+- Blocchi su misura `os-*` in `src/components/blocks/os/` e nello schema; menu ad ancore e `footerLogo` in settings. Stile in fondo a `src/styles/global.css`, script slider/lightbox in fondo a `src/scripts/site.js`.
+- Font self-hosted (@fontsource Archivo + Inter). Favicon e og-image generati dal logo (`npm run assets -- logo-icona.png lavori/lavoro-02-01.jpg`).
+- Anteprima: https://staging-orlandiscapin.adabu.workers.dev (deploy da GitHub Actions su push a `staging`).
 
 ## Partially implemented
 
-- Direzione grafica proposta in `docs/DESIGN.md` (GATE 1 da approvare). Inventario del vecchio sito in `materiale/export-horizons/inventario.md`.
+- Testi dei servizi (righe descrittive) e titoli dei lavori scritti da Adabù: da far confermare al cliente (vedi TASKS).
 
 ## Known issues
 
 - Su Windows `npm test` va lanciato con `--script-shell` di Git Bash; `check:prod-clean` va in crash (assert libuv di Node 24 su `npx astro build`), sulla CI Linux no.
-- Worker Cloudflare e secret `CLOUDFLARE_API_TOKEN` non ancora creati: il deploy delle anteprime si salta.
+- Su Windows: `node qa/screenshot.mjs /` da Git Bash converte "/" in un percorso: lanciarlo senza argomenti. Playwright chromium installato localmente.
 
 ## Infrastructure / External services
 

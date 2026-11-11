@@ -1,0 +1,20 @@
+---
+/** Team e numeri dello studio: i numeri sono disegnati come linee di quota. */
+import Img from '../../Img.astro';
+const { id, label, title, body, stats, image, imageAlt } = Astro.props;
+---
+<section class="section os-numeri" id={id}>
+  <div class="container os-numeri__inner">
+    <div class="os-numeri__text reveal">
+      <p class="os-label">{label}</p>
+      <h2 class="section__title">{title}</h2>
+      <p class="os-lead">{body}</p>
+      <dl class="os-stats">
+        {stats.map((st: { value: string; label: string }) => (
+          <div class="os-stat"><dt class="os-stat__label">{st.label}</dt><dd class="os-stat__value"><span class="os-quota" aria-hidden="true"></span><span>{st.value}</span></dd></div>
+        ))}
+      </dl>
+    </div>
+    {image && <figure class="os-numeri__media reveal"><Img src={image} alt={imageAlt ?? ''} widths={[600, 900, 1400]} sizes="(min-width: 960px) 46vw, 92vw" /></figure>}
+  </div>
+</section>

@@ -16,13 +16,14 @@ const legalLine = [l.companyName, l.vatId && `${tr.vat} ${l.vatId}`, l.address].
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      {s.logo && <Img class="site-footer__logo" src={s.logo} alt={s.name} widths={[80, 160]} sizes="80px" />}
-      <span class="brand__name">{s.name}</span>
+      {(s.footerLogo ?? s.logo) ? <Img class="site-footer__logo" src={s.footerLogo ?? s.logo!} alt={s.name} widths={[160, 320]} sizes="160px" /> : <span class="brand__name">{s.name}</span>}
       {s.tagline && <p class="site-footer__tagline">{s.tagline}</p>}
     </div>
     <div class="site-footer__right">
       <nav class="site-footer__nav" aria-label={tr.navFooter}>
-        {pages.filter((p) => p.nav).map((p) => <a class="site-footer__navlink" href={pagePath(p.slug, prefix)}>{p.navLabel ?? p.title}</a>)}
+        {(s.menu?.length ?? 0) > 0
+          ? s.menu.map((m) => <a class="site-footer__navlink" href={m.href.startsWith('#') ? `${prefix}/${m.href}` : m.href}>{m.label}</a>)
+          : pages.filter((p) => p.nav).map((p) => <a class="site-footer__navlink" href={pagePath(p.slug, prefix)}>{p.navLabel ?? p.title}</a>)}
       </nav>
       {s.socials.length > 0 && (
         <div class="site-footer__follow"><div class="site-footer__socials">

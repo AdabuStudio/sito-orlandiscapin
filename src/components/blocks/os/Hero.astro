@@ -1,0 +1,33 @@
+---
+/** Hero Orlandi & Scapin: testo a sinistra, foto dei lavori (verticali) a destra in dissolvenza. */
+import Img from '../../Img.astro';
+const { eyebrow, title, subtitle, cta, secondaryCta, images } = Astro.props;
+---
+<section class="os-hero">
+  <div class="container os-hero__inner">
+    <div class="os-hero__text">
+      {eyebrow && <p class="os-label">{eyebrow}</p>}
+      <h1 class="os-hero__title">{title}</h1>
+      {subtitle && <p class="os-hero__subtitle">{subtitle}</p>}
+      <div class="os-hero__actions">
+        {cta && <a class="btn btn--primary" href={cta.href}>{cta.label}</a>}
+        {secondaryCta && <a class="btn btn--line" href={secondaryCta.href}>{secondaryCta.label}</a>}
+      </div>
+    </div>
+    <div class="os-hero__media" data-slider>
+      <div class="os-hero__frame">
+        {images.map((im: { src: string; alt: string }, i: number) => (
+          <figure class:list={['os-hero__slide', { 'is-active': i === 0 }]} aria-hidden={i === 0 ? undefined : 'true'}>
+            <Img src={im.src} alt={im.alt} widths={[480, 720, 1080]} sizes="(min-width: 960px) 44vw, 92vw" loading={i === 0 ? 'eager' : 'lazy'} />
+          </figure>
+        ))}
+      </div>
+      <span class="os-quota os-hero__quota" aria-hidden="true"></span>
+      {images.length > 1 && (
+        <div class="os-hero__dots" role="tablist" aria-label="Foto dei lavori">
+          {images.map((_: unknown, i: number) => <button type="button" class:list={['os-hero__dot', { 'is-active': i === 0 }]} aria-label={`Foto ${i + 1} di ${images.length}`} data-slide={i}></button>)}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

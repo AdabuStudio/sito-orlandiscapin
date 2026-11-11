@@ -1,15 +1,276 @@
 {
   "slug": "index",
-  "title": "Home",
+  "title": "Studio tecnico a Castelfranco Veneto",
   "order": 0,
-  "seo": { "metaDescription": "{{META_DESCRIPTION_HOME}}" },
+  "seo": {
+    "metaTitle": "Orlandi & Scapin — Studio tecnico a Castelfranco Veneto (TV)",
+    "metaDescription": "Progettazione, direzione lavori, ristrutturazioni e pratiche catastali e urbanistiche a Castelfranco Veneto e in provincia di Treviso."
+  },
+  "geo": {
+    "summary": "Orlandi & Scapin è uno studio tecnico di Castelfranco Veneto (TV) che si occupa di progettazione residenziale, direzione lavori, ristrutturazioni, pratiche catastali e urbanistiche, sanatorie, perizie e consulenza SUAP.",
+    "keyFacts": [
+      "Sede: Via dei Carpani 63, Castelfranco Veneto (TV)",
+      "Oltre 15 anni di esperienza",
+      "Più di 200 progetti completati",
+      "Telefono 0423 372842"
+    ]
+  },
   "sections": [
-    { "type": "hero", "eyebrow": "{{EYEBROW}}", "title": "{{TITOLO_HERO}}", "subtitle": "{{SOTTOTITOLO_HERO}}", "cta": { "label": "{{CTA_LABEL}}", "href": "/contatti/" } },
-    { "type": "feature-grid", "title": "{{TITOLO_SEZIONE_FEATURE}}", "items": [
-      { "icon": "①", "title": "{{FEATURE_1_TITOLO}}", "text": "{{FEATURE_1_TESTO}}" },
-      { "icon": "②", "title": "{{FEATURE_2_TITOLO}}", "text": "{{FEATURE_2_TESTO}}" },
-      { "icon": "③", "title": "{{FEATURE_3_TITOLO}}", "text": "{{FEATURE_3_TESTO}}" }
-    ] },
-    { "type": "cta", "title": "{{CTA_TITOLO}}", "text": "{{CTA_TESTO}}", "cta": { "label": "{{CTA_LABEL}}", "href": "/contatti/" } }
+    {
+      "type": "os-hero",
+      "eyebrow": "Studio tecnico · Castelfranco Veneto",
+      "title": "Progettiamo spazi. Realizziamo visioni.",
+      "subtitle": "Progettazione, direzione lavori e pratiche tecniche per chi costruisce o ristruttura casa a Castelfranco Veneto e in provincia di Treviso.",
+      "cta": {
+        "label": "Parlaci del tuo progetto",
+        "href": "#contatti"
+      },
+      "secondaryCta": {
+        "label": "Guarda i lavori",
+        "href": "#lavori"
+      },
+      "images": [
+        {
+          "src": "lavori/lavoro-02-01.jpg",
+          "alt": "Casa colonica ristrutturata con portico ad archi e prato"
+        },
+        {
+          "src": "lavori/lavoro-03-02.jpg",
+          "alt": "Soggiorno luminoso con travi bianche a vista"
+        },
+        {
+          "src": "lavori/lavoro-01-01.jpg",
+          "alt": "Facciata di casa rurale restaurata con scuri azzurri"
+        },
+        {
+          "src": "lavori/lavoro-03-04.jpg",
+          "alt": "Scala sospesa in legno su parete bianca"
+        }
+      ]
+    },
+    {
+      "type": "os-studio",
+      "id": "studio",
+      "label": "Lo studio",
+      "title": "Competenza tecnica, attenzione al dettaglio.",
+      "body": "Orlandi & Scapin è uno studio tecnico con sede a Castelfranco Veneto, specializzato in progettazione, direzione lavori e consulenza tecnica. Con oltre 15 anni di esperienza nel settore, offriamo soluzioni personalizzate per progetti residenziali e commerciali, garantendo qualità, precisione e rispetto dei tempi.",
+      "servicesTitle": "Di cosa ci occupiamo",
+      "services": [
+        {
+          "title": "Progettazione residenziale",
+          "text": "Case nuove e ampliamenti, dall'idea al progetto esecutivo."
+        },
+        {
+          "title": "Direzione lavori",
+          "text": "Seguiamo il cantiere fino alla fine, con controllo di tempi e qualità."
+        },
+        {
+          "title": "Ristrutturazioni",
+          "text": "Recupero di case esistenti, anche rurali e storiche."
+        },
+        {
+          "title": "Pratiche catastali",
+          "text": "Accatastamenti, variazioni e aggiornamenti catastali."
+        },
+        {
+          "title": "Pratiche urbanistiche",
+          "text": "Permessi di costruire, SCIA e CILA presso il Comune."
+        },
+        {
+          "title": "Sanatorie e varianti",
+          "text": "Regolarizzazione di difformità e varianti in corso d'opera."
+        },
+        {
+          "title": "Perizie tecniche",
+          "text": "Perizie e relazioni tecniche su immobili."
+        },
+        {
+          "title": "Consulenza SUAP",
+          "text": "Pratiche per attività produttive e commerciali."
+        }
+      ]
+    },
+    {
+      "type": "os-lavori",
+      "id": "lavori",
+      "label": "Lavori",
+      "title": "Case che abbiamo progettato e seguito.",
+      "intro": "Una selezione di interventi recenti tra Castelfranco Veneto e i comuni vicini: recuperi di case rurali, ristrutturazioni e nuove abitazioni.",
+      "projects": [
+        {
+          "title": "Casa colonica con portico ad archi",
+          "kind": "Ristrutturazione",
+          "images": [
+            {
+              "src": "lavori/lavoro-02-01.jpg",
+              "alt": "Casa colonica ristrutturata con portico ad archi"
+            },
+            {
+              "src": "lavori/lavoro-02-02.jpg",
+              "alt": "Portico ad archi in mattoni e sasso con giardino"
+            },
+            {
+              "src": "lavori/lavoro-02-03.jpg",
+              "alt": "La casa colonica prima dei lavori"
+            },
+            {
+              "src": "lavori/lavoro-02-04.jpg",
+              "alt": "Ballatoio in legno sotto la copertura"
+            },
+            {
+              "src": "lavori/lavoro-02-05.jpg",
+              "alt": "Soggiorno con travi bianche e scala"
+            },
+            {
+              "src": "lavori/lavoro-02-06.jpg",
+              "alt": "Scala in legno e acciaio nel soggiorno"
+            },
+            {
+              "src": "lavori/lavoro-02-07.jpg",
+              "alt": "Camera con travi bianche a vista"
+            }
+          ]
+        },
+        {
+          "title": "Recupero di una casa rurale",
+          "kind": "Ristrutturazione",
+          "images": [
+            {
+              "src": "lavori/lavoro-01-01.jpg",
+              "alt": "Facciata restaurata con scuri azzurri"
+            },
+            {
+              "src": "lavori/lavoro-01-02.jpg",
+              "alt": "La casa rurale prima del recupero"
+            },
+            {
+              "src": "lavori/lavoro-01-03.jpg",
+              "alt": "Ingresso con vista sul soggiorno"
+            },
+            {
+              "src": "lavori/lavoro-01-04.jpg",
+              "alt": "Bagno con lavabo in pietra e mensole in legno"
+            },
+            {
+              "src": "lavori/lavoro-01-05.jpg",
+              "alt": "Corridoio con soffitto a travi in legno"
+            }
+          ]
+        },
+        {
+          "title": "Abitazione con portico in facciata",
+          "kind": "Residenziale",
+          "images": [
+            {
+              "src": "lavori/lavoro-03-01.jpg",
+              "alt": "Casa bianca con portico a capanna e cielo azzurro"
+            },
+            {
+              "src": "lavori/lavoro-03-02.jpg",
+              "alt": "Soggiorno con travi bianche e vetrate"
+            },
+            {
+              "src": "lavori/lavoro-03-03.jpg",
+              "alt": "Cucina bianca e legno sotto le travi a vista"
+            },
+            {
+              "src": "lavori/lavoro-03-04.jpg",
+              "alt": "Scala sospesa in legno"
+            }
+          ]
+        },
+        {
+          "title": "Villa con porticato",
+          "kind": "Residenziale",
+          "images": [
+            {
+              "src": "lavori/lavoro-04-01.jpg",
+              "alt": "Villa con porticato e giardino alberato"
+            },
+            {
+              "src": "lavori/lavoro-04-02.jpg",
+              "alt": "Fronte della villa con porticato e prato"
+            },
+            {
+              "src": "lavori/lavoro-04-03.jpg",
+              "alt": "Soggiorno con parete attrezzata"
+            },
+            {
+              "src": "lavori/lavoro-04-04.jpg",
+              "alt": "Zona giorno con tavolo da pranzo"
+            },
+            {
+              "src": "lavori/lavoro-04-05.jpg",
+              "alt": "Camino in muratura tra due finestre"
+            }
+          ]
+        },
+        {
+          "title": "Casa unifamiliare",
+          "kind": "Residenziale",
+          "images": [
+            {
+              "src": "lavori/lavoro-05-01.jpg",
+              "alt": "Casa a due piani con giardino"
+            },
+            {
+              "src": "lavori/lavoro-05-02.jpg",
+              "alt": "La casa durante i lavori, con i ponteggi"
+            },
+            {
+              "src": "lavori/lavoro-05-03.jpg",
+              "alt": "Soggiorno con portale scuro e divano"
+            },
+            {
+              "src": "lavori/lavoro-05-04.jpg",
+              "alt": "Zona pranzo con tavolo in legno"
+            },
+            {
+              "src": "lavori/lavoro-05-05.jpg",
+              "alt": "Ingresso luminoso con porta vetrata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "os-numeri",
+      "id": "team",
+      "label": "Il team",
+      "title": "Professionisti al servizio del territorio.",
+      "body": "Il nostro team è composto da professionisti qualificati con una profonda conoscenza del territorio e delle normative locali. Ogni progetto viene seguito con dedizione, dalla fase di progettazione fino alla realizzazione finale.",
+      "stats": [
+        {
+          "value": "15+",
+          "label": "Anni di esperienza"
+        },
+        {
+          "value": "200+",
+          "label": "Progetti completati"
+        },
+        {
+          "value": "100%",
+          "label": "Clienti soddisfatti"
+        },
+        {
+          "value": "2",
+          "label": "Professionisti dedicati"
+        }
+      ],
+      "image": "studio-sede.jpg",
+      "imageAlt": "Edificio contemporaneo bianco e grigio con ampie vetrate"
+    },
+    {
+      "type": "os-contatti",
+      "id": "contatti",
+      "label": "Contatti",
+      "title": "Parlaci del tuo progetto.",
+      "text": "Raccontaci la tua idea. Ti risponderemo entro 24 ore per valutare insieme le possibilità e trovare la soluzione più adatta alle tue esigenze.",
+      "address": "Via dei Carpani 63, Castelfranco Veneto (TV)",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Via+dei+Carpani+63+Castelfranco+Veneto",
+      "phone": "0423 372842",
+      "email": "info@orlandiscapin.it",
+      "formTitle": "Scrivici"
+    }
   ]
 }

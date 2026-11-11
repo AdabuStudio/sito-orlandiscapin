@@ -1,0 +1,40 @@
+---
+/** Lavori: un intervento per riga, foto in fila scorrevole; clic = foto grande (dialog nativo). */
+import Img from '../../Img.astro';
+const { id, label, title, intro, projects } = Astro.props;
+type Im = { src: string; alt: string };
+---
+<section class="section os-lavori" id={id}>
+  <div class="container">
+    <div class="os-lavori__head reveal">
+      <p class="os-label">{label}</p>
+      <h2 class="section__title">{title}</h2>
+      {intro && <p class="os-lead">{intro}</p>}
+    </div>
+  </div>
+  {projects.map((p: { title: string; kind: string; text?: string; images: Im[] }) => (
+    <article class="os-project reveal">
+      <div class="container os-project__head">
+        <h3 class="os-project__title">{p.title}</h3>
+        <p class="os-project__kind">{p.kind} · {p.images.length} foto</p>
+        {p.text && <p class="os-project__text">{p.text}</p>}
+      </div>
+      <ul class="os-project__strip" aria-label={`Foto: ${p.title}`}>
+        {p.images.map((im: Im) => (
+          <li>
+            <button type="button" class="os-project__shot" data-lightbox aria-label={`Ingrandisci: ${im.alt}`}>
+              <Img src={im.src} alt={im.alt} widths={[400, 640, 1080]} sizes="(min-width: 960px) 26vw, 72vw" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </article>
+  ))}
+  <dialog class="os-lightbox" aria-label="Foto ingrandita">
+    <button type="button" class="os-lightbox__close" aria-label="Chiudi">×</button>
+    <button type="button" class="os-lightbox__nav os-lightbox__nav--prev" aria-label="Foto precedente">‹</button>
+    <img class="os-lightbox__img" alt="" />
+    <button type="button" class="os-lightbox__nav os-lightbox__nav--next" aria-label="Foto successiva">›</button>
+    <p class="os-lightbox__caption"></p>
+  </dialog>
+</section>
