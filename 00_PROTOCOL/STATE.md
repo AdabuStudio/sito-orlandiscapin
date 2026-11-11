@@ -1,7 +1,7 @@
 # Project State
 
 Last updated: 2026-11-11
-Last verified commit: (commit di questa sessione su staging)
+Last verified commit: (ultimo commit di staging del 2026-11-11)
 Last agent: Claude Code (desktop, Windows) — onboarding
 
 ## Summary

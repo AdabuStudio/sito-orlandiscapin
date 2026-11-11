@@ -1,13 +1,20 @@
 # Handoff
 
-Data: 2026-11-11 · Ramo: `staging`
+Data: 2026-11-11 · Ramo: `staging` · PR draft #1 (staging → main)
 
 ## Fatto
-- Sito costruito secondo `docs/DESIGN.md` (GATE 1 approvato da Federico): vedi STATE.md.
-- Foto dei lavori copiate da `materiale/` (non versionato) in `src/assets/images/lavori/` con nomi neutri `lavoro-NN-MM.jpg`
-  (01 = recupero casa rurale, 02 = casa colonica, 03 = casa con portico, 04 = villa con porticato, 05 = casa unifamiliare). Mai nomi dei proprietari.
-- `npm run build` verde, QA (`node qa/screenshot.mjs`) 0 problemi, validate-seo ok.
-- Worker `orlandiscapin` e secret `CLOUDFLARE_API_TOKEN` creati da Federico: le anteprime si pubblicano da sole.
+- Sito a pagina unica costruito e approvato nelle parti viste da Federico: Hero, Lo studio, Team (foto larga nitida), Lavori (galleria unica di 24 foto mischiate, senza didascalie), Contatti con modulo.
+- Anteprima: https://staging-orlandiscapin.adabu.workers.dev (deploy automatico su push a `staging`). Editor mockup attivo con il secret `EDITOR_PASSWORD` (la password si legge dall'anteprima, non è scritta nel repo).
+- Worker `orlandiscapin` e secret `CLOUDFLARE_API_TOKEN` creati.
+- Build, validate-seo e QA verdi.
+
+## Stato
+- **Sessione fermata su richiesta di Federico** ("per ora ci fermiamo"). Nessun lavoro a metà.
 
 ## Prossimo passo
-- Federico manda l'anteprima al cliente e raccoglie le conferme di TASKS.md; poi go-live.
+- Mandare l'anteprima al cliente e raccogliere le conferme in TASKS.md; poi privacy/cookie, DNS + Email Sending, go-live.
+
+## Note per chi riprende (Windows)
+- `npm` script con sintassi bash: lanciare con `--script-shell` di Git Bash, oppure `npx astro build` direttamente.
+- QA: `node qa/screenshot.mjs` senza argomenti (da Git Bash "/" diventa un percorso).
+- Anteprima locale: config `orlandiscapin-preview` in `CODING-WEB/.claude/launch.json` (serve `dist/`).

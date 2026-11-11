@@ -115,14 +115,14 @@
   if (!dlg || typeof dlg.showModal !== 'function') return;
   var allShots = function () { return Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]')).filter(function (b) { return b.offsetParent !== null; }); };
   var shots = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
-  var big = dlg.querySelector('.os-lightbox__img'), cap = dlg.querySelector('.os-lightbox__caption'), cur = 0;
+  var big = dlg.querySelector('.os-lightbox__img'), cur = 0;
   var open = function (n) {
     shots = allShots();
     cur = (n + shots.length) % shots.length;
     var img = shots[cur].querySelector('img');
     var src = img.currentSrc || img.src;
     if (img.srcset) { var last = img.srcset.split(',').pop().trim().split(' ')[0]; if (last) src = last; }
-    big.src = src; big.alt = img.alt; cap.textContent = img.alt;
+    big.src = src; big.alt = img.alt;
     if (!dlg.open) dlg.showModal();
   };
   shots.forEach(function (b) { b.addEventListener('click', function () { open(allShots().indexOf(b)); }); });
