@@ -436,14 +436,25 @@ a { color: var(--color-text); text-decoration-color: var(--os-pencil); text-unde
 .os-lightbox__close:hover, .os-lightbox__nav:hover { color: #f0a59f; }
 
 /* Team e numeri */
-.os-numeri__inner { display: grid; gap: 3rem; align-items: center; }
-.os-numeri__media { margin: 0; }
-.os-numeri__media img { width: 100%; }
+.os-numeri { overflow: hidden; }
+.os-numeri__inner { display: grid; gap: 3rem; align-items: stretch; }
+/* Foto grande: su mobile a tutta larghezza, su desktop esce fino al bordo destro della finestra */
+.os-numeri__media { margin: 0 calc(-1 * var(--space)); position: relative; }
+.os-numeri__media img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; }
+.os-numeri__media::after { /* angolo da tavola tecnica */
+  content: ""; position: absolute; left: 14px; top: 14px; width: 34px; height: 34px;
+  border-left: 1.5px solid var(--os-pencil); border-top: 1.5px solid var(--os-pencil); pointer-events: none; }
 .os-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 1.6rem; margin: 2.5rem 0 0; }
 .os-stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .5rem; }
 .os-stat__value { margin: 0; display: flex; flex-direction: column-reverse; gap: .5rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 4.5vw, 3.2rem); line-height: 1; letter-spacing: -.02em; }
 .os-stat__label { font-family: var(--font-display); font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--color-secondary); }
-@media (min-width: 960px) { .os-numeri__inner { grid-template-columns: 1.05fr .95fr; gap: 5rem; } }
+@media (min-width: 960px) {
+  .os-numeri { padding-block: 0; }
+  .os-numeri__inner { grid-template-columns: .95fr 1.05fr; gap: 5rem; }
+  .os-numeri__text { padding-block: clamp(4rem, 7vw, 6.5rem); }
+  .os-numeri__media { margin: 0 calc((min(100vw, var(--maxw)) - 100vw) / 2 - var(--space)) 0 0; min-height: 560px; }
+  .os-numeri__media img { position: absolute; inset: 0; aspect-ratio: auto; }
+}
 
 /* Contatti */
 .os-contatti { background: var(--color-text); color: #fff; }
