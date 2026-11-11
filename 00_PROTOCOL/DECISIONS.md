@@ -17,3 +17,4 @@ Formato: data · decisione · perché · Status (accepted | inferred | supersede
 - 2026-11-11 · Sezione "Lavori" aggiunta alla pagina unica, titoli neutri per tipo di intervento · proposta in DESIGN.md approvata · Status: accepted
 - 2026-11-11 · Hero a due colonne con foto verticali (le foto sono quasi tutte 4:5) invece di foto a tutto schermo · resa migliore senza ingrandire immagini da 1080px · Status: inferred
 - 2026-11-11 · Editor mockup nelle anteprime: `editor.js` a token (stessa versione di Orostyle) con i colori del sito in fondo a `global.css` (barra inchiostro, rosso matita per selezione e guide); si accende con il secret `EDITOR_PASSWORD` · richiesta di Federico ("Aggiungi anche l'editor") · Status: accepted
+- 2026-11-11 · Ordine delle sezioni: Studio, Team, Lavori, Contatti (anche nel menu); foto del Team larga in proporzione originale, senza ingrandimenti (la foto è 1746px) · richiesta di Federico ("mega sgranata, non deve esserlo") · Status: accepted

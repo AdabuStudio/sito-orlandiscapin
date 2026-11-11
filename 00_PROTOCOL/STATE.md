@@ -28,7 +28,7 @@ pubblicato su Cloudflare Workers con file statici. Tipo di lavoro: Tipo 2 — re
 
 ## Current working features
 
-- Sito a pagina unica costruito (Tipo 2, direzione "Tavola tecnica" approvata): hero con slider di foto vere, Lo studio + 8 servizi, Lavori (5 interventi, 26 foto, galleria con lightbox), Team + numeri con linee di quota, Contatti con modulo (Worker → info@orlandiscapin.it; nelle anteprime solo prova).
+- Sito a pagina unica costruito (Tipo 2, direzione "Tavola tecnica" approvata): hero con slider di foto vere, Lo studio + 8 servizi, Team + numeri con linee di quota e foto larga, Lavori (5 interventi, 26 foto, galleria con lightbox), Contatti con modulo (Worker → info@orlandiscapin.it; nelle anteprime solo prova).
 - Blocchi su misura `os-*` in `src/components/blocks/os/` e nello schema; menu ad ancore e `footerLogo` in settings. Stile in fondo a `src/styles/global.css`, script slider/lightbox in fondo a `src/scripts/site.js`.
 - Font self-hosted (@fontsource Archivo + Inter). Favicon e og-image generati dal logo (`npm run assets -- logo-icona.png lavori/lavoro-02-01.jpg`).
 - Anteprima: https://staging-orlandiscapin.adabu.workers.dev (deploy da GitHub Actions su push a `staging`).

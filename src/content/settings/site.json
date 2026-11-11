@@ -61,12 +61,12 @@
       "href": "/#studio"
     },
     {
-      "label": "Lavori",
-      "href": "/#lavori"
-    },
-    {
       "label": "Team",
       "href": "/#team"
+    },
+    {
+      "label": "Lavori",
+      "href": "/#lavori"
     },
     {
       "label": "Contatti",

@@ -91,6 +91,33 @@
       ]
     },
     {
+      "type": "os-numeri",
+      "id": "team",
+      "label": "Il team",
+      "title": "Professionisti al servizio del territorio.",
+      "body": "Il nostro team è composto da professionisti qualificati con una profonda conoscenza del territorio e delle normative locali. Ogni progetto viene seguito con dedizione, dalla fase di progettazione fino alla realizzazione finale.",
+      "stats": [
+        {
+          "value": "15+",
+          "label": "Anni di esperienza"
+        },
+        {
+          "value": "200+",
+          "label": "Progetti completati"
+        },
+        {
+          "value": "100%",
+          "label": "Clienti soddisfatti"
+        },
+        {
+          "value": "2",
+          "label": "Professionisti dedicati"
+        }
+      ],
+      "image": "studio-sede.jpg",
+      "imageAlt": "Edificio contemporaneo bianco e grigio con ampie vetrate"
+    },
+    {
       "type": "os-lavori",
       "id": "lavori",
       "label": "Lavori",
@@ -232,33 +259,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "os-numeri",
-      "id": "team",
-      "label": "Il team",
-      "title": "Professionisti al servizio del territorio.",
-      "body": "Il nostro team è composto da professionisti qualificati con una profonda conoscenza del territorio e delle normative locali. Ogni progetto viene seguito con dedizione, dalla fase di progettazione fino alla realizzazione finale.",
-      "stats": [
-        {
-          "value": "15+",
-          "label": "Anni di esperienza"
-        },
-        {
-          "value": "200+",
-          "label": "Progetti completati"
-        },
-        {
-          "value": "100%",
-          "label": "Clienti soddisfatti"
-        },
-        {
-          "value": "2",
-          "label": "Professionisti dedicati"
-        }
-      ],
-      "image": "studio-sede.jpg",
-      "imageAlt": "Edificio contemporaneo bianco e grigio con ampie vetrate"
     },
     {
       "type": "os-contatti",
