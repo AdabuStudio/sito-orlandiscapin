@@ -1,0 +1,54 @@
+protocol:
+  name: adabu-vibecode
+  display_name: "Adabù VibeCode Protocol"
+  version: 6
+
+project:
+  name: "{{NOME_BRAND}}"
+  slug: "{{SLUG}}"
+  type: client
+  runtime: repo
+
+repository:
+  current_branch: ""
+  main_branch: main
+
+agents:
+  primary: null
+  worked_so_far: []
+  constraints:
+    - "Sito Astro statico (template adabu-site-template v2): niente D1/R2 al tier static, mai push su main, PR draft."
+
+# Sync SEMPRE e solo in uscita (repo → esterno). Estensione del template per i siti:
+# la destinazione ClickUp NON è un task ma il DOC "SITO — Roadmap di sviluppo" nella cartella
+# progetto del cliente (02-PROGETTI/<CLIENTE>). I task di modifica sito si LEGGONO dalla stessa cartella.
+sync:
+  direction: repo_to_external_only
+
+  clickup:
+    bound: false
+    url: null                       # URL del doc roadmap, o della cartella cliente se il doc non esiste ancora
+    folder_id: null                 # cartella progetto del cliente (da cui si leggono i task di modifica sito)
+    doc_id: null                    # doc "SITO — Roadmap di sviluppo"
+    doc_name: "SITO — Roadmap di sviluppo"
+    task_id: null
+    list_id: null
+    cadence: on_milestone
+    payload: [state_summary, tasks_now_next, decisions, releases]
+    last_synced: null
+
+  client_brain:
+    bound: false
+    url: null                       # documento 00_[CLIENTE]_AI: SOLA LETTURA (tono di voce, KPI)
+    doc_id: null
+    read_only: true
+    cadence: never
+
+  mente_ai:
+    bound: false
+    instance: null                  # mente-ai se l'agente ha il tool MENTE; altrimenti salta in silenzio
+    project: "{{SLUG}}"
+    chapter: null
+    cadence: on_milestone
+    payload: [decisions]
+    last_synced: null

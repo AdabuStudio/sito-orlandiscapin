@@ -1,0 +1,49 @@
+protocol:
+  name: adabu-vibecode
+  display_name: "Adabù VibeCode Protocol"
+  version: 6
+
+project:
+  name: "Adabù Site Template"
+  slug: adabu-site-template
+  type: internal
+  runtime: repo
+
+repository:
+  current_branch: lingue-e-modulo-docs
+  main_branch: main
+
+agents:
+  primary: claude-code
+  worked_so_far: [claude-code]
+  constraints:
+    - "Questo è il repo del TEMPLATE: qui NON si onboardano né si costruiscono siti cliente (vedi CLAUDE.md)."
+    - "Mai push su main (ramo di default). PR draft. Il codice v2 sta nel ramo v2-astro-riferimento; setup-base è congelato."
+
+sync:
+  direction: repo_to_external_only
+  clickup:
+    bound: false
+    url: null
+    folder_id: null
+    doc_id: null
+    doc_name: null
+    task_id: null
+    list_id: null
+    cadence: on_command
+    payload: [state_summary, tasks_now_next]
+    last_synced: null
+  client_brain:
+    bound: false
+    url: null
+    doc_id: null
+    read_only: true
+    cadence: never
+  mente_ai:
+    bound: true
+    instance: mente-ai
+    project: adabu-site-template
+    chapter: null
+    cadence: on_milestone
+    payload: [decisions]
+    last_synced: null

@@ -1,0 +1,21 @@
+node_modules/
+# /dist è rigenerabile con `node build.js` — non lo versioniamo.
+dist/
+# Screenshot QA generati (versiona solo quelli che vuoi tenere come riferimento).
+qa/*.png
+.DS_Store
+*.log
+
+# Astro / v2
+.astro/
+dist-*/
+.env
+.env.*
+!.env.example
+.wrangler/
+
+# Script Python delle skill (ui-ux-pro-max)
+__pycache__/
+*.pyc
+# Cartella di lavoro di impeccable (screenshot di review, stato build)
+.impeccable/

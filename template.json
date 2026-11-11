@@ -1,0 +1,10 @@
+{
+  "template": "adabu-site-template",
+  "version": "2.3.0",
+  "engine": "astro",
+  "tier": "static",
+  "client": null,
+  "legacy_v1_tag": "v1-static-zero-build",
+  "reference_branch": "v2-astro-riferimento",
+  "contents": "instructions-only"
+}

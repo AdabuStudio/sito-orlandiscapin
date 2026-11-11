@@ -1,0 +1,5 @@
+#!/bin/sh
+# Segnaposto Adabù: il motore di impeccable (binario scaricato da GitHub) è disattivato in questo template.
+# Esce con errore di proposito: la skill usa il suo percorso "Launcher unavailable" e continua con le sole istruzioni.
+echo "impeccable: motore disattivato nel template Adabù (nessun download). Continua leggendo docs/DESIGN.md e le istruzioni della skill." >&2
+exit 1

@@ -1,0 +1,5 @@
+# Configurazione di progetto per Codex (vale solo se il progetto è "trusted").
+# Documentazione ufficiale di Astro sempre aggiornata. Le skill per Codex stanno in .agents/skills
+# (collegamenti a .claude/skills, rigenerati da skills/vendor-refresh.sh).
+[mcp_servers.astro-docs]
+url = "https://mcp.docs.astro.build/mcp"
