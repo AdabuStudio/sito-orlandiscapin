@@ -463,6 +463,24 @@ a { color: var(--color-text); text-decoration-color: var(--os-pencil); text-unde
 .form input:focus-visible, .form textarea:focus-visible { outline-color: var(--os-pencil); }
 .form__check input { accent-color: var(--color-text); }
 @media (min-width: 960px) { .os-contatti__inner { grid-template-columns: .9fr 1.1fr; gap: 5rem; align-items: start; } }
+/* Modulo compatto: circa alto quanto i recapiti a sinistra */
+.os-contatti__form { padding: clamp(1.25rem, 2.4vw, 1.8rem); }
+.os-contatti .form { margin-top: .9rem; gap: .75rem; grid-template-columns: 1fr; }
+.os-contatti .form > * { grid-column: 1 / -1; }
+.os-contatti .form__field { gap: .25rem; }
+.os-contatti .form__field label { font-size: .85rem; }
+.os-contatti .form textarea { height: 9rem; min-height: 4.5rem; resize: vertical; }
+.os-contatti .form__check { font-size: .84rem; }
+.os-contatti .form__submit { padding: .8rem 1.6rem; }
+.os-contatti .form__status:empty { min-height: 0; }
+@media (min-width: 640px) {
+  .os-contatti .form { grid-template-columns: repeat(2, 1fr); }
+  .os-contatti .form__field:has(#cf-name), .os-contatti .form__field:has(#cf-email) { grid-column: span 1; }
+}
+@media (min-width: 1100px) {
+  .os-contatti .form { grid-template-columns: repeat(3, 1fr); }
+  .os-contatti .form__field:has(#cf-phone) { grid-column: span 1; }
+}
 
 /* Footer */
 .site-footer { margin-top: 0; background: var(--os-paper-2); border-top: 0; }
