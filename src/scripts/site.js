@@ -100,11 +100,24 @@
     start();
   });
 
+  // Galleria lavori: oltre data-initial foto, le altre si aprono con il pulsante (senza JS restano tutte visibili)
+  document.querySelectorAll('[data-gallery][data-initial]').forEach(function (g) {
+    var btn = g.parentNode.querySelector('[data-gallery-more]');
+    if (!btn) return;
+    var n = parseInt(g.getAttribute('data-initial'), 10) || 0;
+    var extra = Array.prototype.slice.call(g.children, n);
+    extra.forEach(function (li) { li.classList.add('is-extra'); });
+    btn.hidden = false;
+    btn.addEventListener('click', function () { extra.forEach(function (li) { li.classList.remove('is-extra'); }); btn.parentNode.removeChild(btn); });
+  });
+
   var dlg = document.querySelector('.os-lightbox');
   if (!dlg || typeof dlg.showModal !== 'function') return;
+  var allShots = function () { return Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]')).filter(function (b) { return b.offsetParent !== null; }); };
   var shots = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
   var big = dlg.querySelector('.os-lightbox__img'), cap = dlg.querySelector('.os-lightbox__caption'), cur = 0;
   var open = function (n) {
+    shots = allShots();
     cur = (n + shots.length) % shots.length;
     var img = shots[cur].querySelector('img');
     var src = img.currentSrc || img.src;
@@ -112,7 +125,7 @@
     big.src = src; big.alt = img.alt; cap.textContent = img.alt;
     if (!dlg.open) dlg.showModal();
   };
-  shots.forEach(function (b, n) { b.addEventListener('click', function () { open(n); }); });
+  shots.forEach(function (b) { b.addEventListener('click', function () { open(allShots().indexOf(b)); }); });
   dlg.querySelector('.os-lightbox__close').addEventListener('click', function () { dlg.close(); });
   dlg.querySelector('.os-lightbox__nav--prev').addEventListener('click', function () { open(cur - 1); });
   dlg.querySelector('.os-lightbox__nav--next').addEventListener('click', function () { open(cur + 1); });

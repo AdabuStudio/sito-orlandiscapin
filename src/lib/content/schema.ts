@@ -75,8 +75,9 @@ export const sectionSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('os-studio'), id: z.string(), label: z.string(), title: z.string(), body: z.string(),
     servicesTitle: z.string().optional(), services: z.array(z.object({ title: z.string(), text: z.string() })) }),
   z.object({ type: z.literal('os-lavori'), id: z.string(), label: z.string(), title: z.string(), intro: z.string().optional(),
-    projects: z.array(z.object({ title: z.string(), kind: z.string(), text: z.string().optional(),
-      images: z.array(z.object({ src: z.string(), alt: z.string() })).min(1) })) }),
+    /** Quante foto mostrare prima del pulsante "Mostra tutte" (0 = tutte). */
+    initial: z.number().int().min(0).default(12), moreLabel: z.string().default('Mostra tutte le foto'),
+    images: z.array(z.object({ src: z.string(), alt: z.string(), featured: z.boolean().default(false) })).min(1) }),
   z.object({ type: z.literal('os-numeri'), id: z.string(), label: z.string(), title: z.string(), body: z.string(),
     stats: z.array(z.object({ value: z.string(), label: z.string() })), image: z.string().optional(), imageAlt: z.string().optional() }),
   z.object({ type: z.literal('os-contatti'), id: z.string(), label: z.string(), title: z.string(), text: z.string().optional(),

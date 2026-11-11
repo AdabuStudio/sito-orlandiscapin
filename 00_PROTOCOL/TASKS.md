@@ -1,7 +1,7 @@
 # Tasks
 
 ## Da confermare con il cliente (prima del go-live)
-- [ ] Titoli dei 5 lavori e tipo di intervento (scritti guardando le foto) e le didascalie "prima dei lavori" / "durante i lavori".
+- [ ] Didascalie delle foto della galleria Lavori (scritte guardando le foto). Escluse 3 foto "prima/durante i lavori": rimetterle solo se il cliente vuole un prima/dopo.
 - [ ] Righe descrittive degli 8 servizi (il sito vecchio aveva solo i nomi).
 - [ ] Numeri dello studio: "100% clienti soddisfatti" va tenuto? (affermazione non verificabile).
 - [ ] La foto `FOTO UFFICI` (sezione Team) è la sede dello studio? Se sì, alt e didascalia da aggiornare.

@@ -122,141 +122,108 @@
       "id": "lavori",
       "label": "Lavori",
       "title": "Case che abbiamo progettato e seguito.",
-      "intro": "Una selezione di interventi recenti tra Castelfranco Veneto e i comuni vicini: recuperi di case rurali, ristrutturazioni e nuove abitazioni.",
-      "projects": [
+      "intro": "Una selezione di interventi recenti tra Castelfranco Veneto e i comuni vicini: recuperi di case rurali, ristrutturazioni e nuove abitazioni. Clicca su una foto per ingrandirla.",
+      "initial": 14,
+      "images": [
         {
-          "title": "Casa colonica con portico ad archi",
-          "kind": "Ristrutturazione",
-          "images": [
-            {
-              "src": "lavori/lavoro-02-01.jpg",
-              "alt": "Casa colonica ristrutturata con portico ad archi"
-            },
-            {
-              "src": "lavori/lavoro-02-02.jpg",
-              "alt": "Portico ad archi in mattoni e sasso con giardino"
-            },
-            {
-              "src": "lavori/lavoro-02-03.jpg",
-              "alt": "La casa colonica prima dei lavori"
-            },
-            {
-              "src": "lavori/lavoro-02-04.jpg",
-              "alt": "Ballatoio in legno sotto la copertura"
-            },
-            {
-              "src": "lavori/lavoro-02-05.jpg",
-              "alt": "Soggiorno con travi bianche e scala"
-            },
-            {
-              "src": "lavori/lavoro-02-06.jpg",
-              "alt": "Scala in legno e acciaio nel soggiorno"
-            },
-            {
-              "src": "lavori/lavoro-02-07.jpg",
-              "alt": "Camera con travi bianche a vista"
-            }
-          ]
+          "src": "lavori/lavoro-02-01.jpg",
+          "alt": "Casa colonica ristrutturata con portico ad archi",
+          "featured": true
         },
         {
-          "title": "Recupero di una casa rurale",
-          "kind": "Ristrutturazione",
-          "images": [
-            {
-              "src": "lavori/lavoro-01-01.jpg",
-              "alt": "Facciata restaurata con scuri azzurri"
-            },
-            {
-              "src": "lavori/lavoro-01-02.jpg",
-              "alt": "La casa rurale prima del recupero"
-            },
-            {
-              "src": "lavori/lavoro-01-03.jpg",
-              "alt": "Ingresso con vista sul soggiorno"
-            },
-            {
-              "src": "lavori/lavoro-01-04.jpg",
-              "alt": "Bagno con lavabo in pietra e mensole in legno"
-            },
-            {
-              "src": "lavori/lavoro-01-05.jpg",
-              "alt": "Corridoio con soffitto a travi in legno"
-            }
-          ]
+          "src": "lavori/lavoro-03-02.jpg",
+          "alt": "Soggiorno con travi bianche e vetrate"
         },
         {
-          "title": "Abitazione con portico in facciata",
-          "kind": "Residenziale",
-          "images": [
-            {
-              "src": "lavori/lavoro-03-01.jpg",
-              "alt": "Casa bianca con portico a capanna e cielo azzurro"
-            },
-            {
-              "src": "lavori/lavoro-03-02.jpg",
-              "alt": "Soggiorno con travi bianche e vetrate"
-            },
-            {
-              "src": "lavori/lavoro-03-03.jpg",
-              "alt": "Cucina bianca e legno sotto le travi a vista"
-            },
-            {
-              "src": "lavori/lavoro-03-04.jpg",
-              "alt": "Scala sospesa in legno"
-            }
-          ]
+          "src": "lavori/lavoro-01-04.jpg",
+          "alt": "Bagno con lavabo in pietra e mensole in legno"
         },
         {
-          "title": "Villa con porticato",
-          "kind": "Residenziale",
-          "images": [
-            {
-              "src": "lavori/lavoro-04-01.jpg",
-              "alt": "Villa con porticato e giardino alberato"
-            },
-            {
-              "src": "lavori/lavoro-04-02.jpg",
-              "alt": "Fronte della villa con porticato e prato"
-            },
-            {
-              "src": "lavori/lavoro-04-03.jpg",
-              "alt": "Soggiorno con parete attrezzata"
-            },
-            {
-              "src": "lavori/lavoro-04-04.jpg",
-              "alt": "Zona giorno con tavolo da pranzo"
-            },
-            {
-              "src": "lavori/lavoro-04-05.jpg",
-              "alt": "Camino in muratura tra due finestre"
-            }
-          ]
+          "src": "lavori/lavoro-04-03.jpg",
+          "alt": "Soggiorno con parete attrezzata"
         },
         {
-          "title": "Casa unifamiliare",
-          "kind": "Residenziale",
-          "images": [
-            {
-              "src": "lavori/lavoro-05-01.jpg",
-              "alt": "Casa a due piani con giardino"
-            },
-            {
-              "src": "lavori/lavoro-05-02.jpg",
-              "alt": "La casa durante i lavori, con i ponteggi"
-            },
-            {
-              "src": "lavori/lavoro-05-03.jpg",
-              "alt": "Soggiorno con portale scuro e divano"
-            },
-            {
-              "src": "lavori/lavoro-05-04.jpg",
-              "alt": "Zona pranzo con tavolo in legno"
-            },
-            {
-              "src": "lavori/lavoro-05-05.jpg",
-              "alt": "Ingresso luminoso con porta vetrata"
-            }
-          ]
+          "src": "lavori/lavoro-02-05.jpg",
+          "alt": "Soggiorno con travi bianche e scala"
+        },
+        {
+          "src": "lavori/lavoro-05-01.jpg",
+          "alt": "Casa a due piani con giardino"
+        },
+        {
+          "src": "lavori/lavoro-03-01.jpg",
+          "alt": "Casa bianca con portico a capanna e cielo azzurro",
+          "featured": true
+        },
+        {
+          "src": "lavori/lavoro-01-03.jpg",
+          "alt": "Ingresso con vista sul soggiorno"
+        },
+        {
+          "src": "lavori/lavoro-06-01.jpg",
+          "alt": "Soggiorno con parete in pietra e divano"
+        },
+        {
+          "src": "lavori/lavoro-04-05.jpg",
+          "alt": "Camino in muratura tra due finestre"
+        },
+        {
+          "src": "lavori/lavoro-02-02.jpg",
+          "alt": "Portico ad archi in mattoni e sasso con giardino"
+        },
+        {
+          "src": "lavori/lavoro-05-03.jpg",
+          "alt": "Soggiorno con portale scuro e divano"
+        },
+        {
+          "src": "lavori/lavoro-03-03.jpg",
+          "alt": "Cucina bianca e legno sotto le travi a vista"
+        },
+        {
+          "src": "lavori/lavoro-01-05.jpg",
+          "alt": "Corridoio con soffitto a travi in legno"
+        },
+        {
+          "src": "lavori/lavoro-04-01.jpg",
+          "alt": "Villa con porticato e giardino alberato",
+          "featured": true
+        },
+        {
+          "src": "lavori/lavoro-02-06.jpg",
+          "alt": "Scala in legno e acciaio nel soggiorno"
+        },
+        {
+          "src": "lavori/lavoro-05-04.jpg",
+          "alt": "Zona pranzo con tavolo in legno"
+        },
+        {
+          "src": "lavori/lavoro-03-04.jpg",
+          "alt": "Scala sospesa in legno"
+        },
+        {
+          "src": "lavori/lavoro-01-01.jpg",
+          "alt": "Casa rurale recuperata con scuri azzurri",
+          "featured": true
+        },
+        {
+          "src": "lavori/lavoro-04-04.jpg",
+          "alt": "Zona giorno con tavolo da pranzo"
+        },
+        {
+          "src": "lavori/lavoro-02-07.jpg",
+          "alt": "Camera con travi bianche a vista"
+        },
+        {
+          "src": "lavori/lavoro-05-05.jpg",
+          "alt": "Ingresso luminoso con porta vetrata"
+        },
+        {
+          "src": "lavori/lavoro-04-02.jpg",
+          "alt": "Fronte della villa con porticato e prato"
+        },
+        {
+          "src": "lavori/lavoro-02-04.jpg",
+          "alt": "Ballatoio in legno sotto la copertura"
         }
       ]
     },
