@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Sections from '../components/Sections.astro';
+import { getPages, getSettings } from '../lib/content';
+import type { Page } from '../lib/content';
+import { pageJsonLd } from '../lib/seo/page';
+import { pagePath } from '../lib/seo/url';
+import { keyOf, langOf, localePrefix, siteLocales } from '../lib/i18n';
+
+/** Tutte le pagine di tutte le lingue: lingua principale senza prefisso, le altre sotto /<lingua>/. */
+export async function getStaticPaths() {
+  const s = await getSettings();
+  const all = await getPages();
+  const pathOf = (p: Page) => pagePath(p.slug, localePrefix(s, langOf(s, p)));
+  return all.filter((p) => p.slug !== 'privacy').map((page) => {
+    const path = pathOf(page);
+    const alternates = all.filter((x) => keyOf(x) === keyOf(page) && !x.seo.noindex).map((x) => ({ lang: langOf(s, x), path: pathOf(x) }))
+      .sort((a, b) => siteLocales(s).indexOf(a.lang) - siteLocales(s).indexOf(b.lang));
+    return { params: { slug: path === '/' ? undefined : path.slice(1, -1) }, props: { page, lang: langOf(s, page), path, alternates } };
+  });
+}
+const { page, lang, path, alternates } = Astro.props;
+const description = page.seo.metaDescription ?? page.geo?.summary;
+const jsonLd = await pageJsonLd(page, lang, path);
+---
+<Base title={page.title} description={description} path={path} seo={page.seo} jsonLd={jsonLd} lang={lang} alternates={alternates}>
+  <Sections sections={page.sections} lang={lang} />
+</Base>

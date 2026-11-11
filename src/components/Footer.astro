@@ -1,0 +1,38 @@
+---
+import type { Page, Settings } from '../lib/content';
+import { pagePath } from '../lib/seo/url';
+import { localePrefix, privacyPath, t as strings } from '../lib/i18n';
+import Img from './Img.astro';
+const { settings: s, pages, lang } = Astro.props as { settings: Settings; pages: Page[]; lang: string };
+const tr = strings(lang);
+const prefix = localePrefix(s, lang);
+const t = s.tracking;
+const iub = t.iubendaCookiePolicyId && t.iubendaSiteId;
+const privacy = iub ? `https://www.iubenda.com/privacy-policy/${t.iubendaCookiePolicyId}` : privacyPath(s, lang);
+const cookie = iub ? `https://www.iubenda.com/privacy-policy/${t.iubendaCookiePolicyId}/cookie-policy` : privacyPath(s, lang);
+const l = s.legal;
+const legalLine = [l.companyName, l.vatId && `${tr.vat} ${l.vatId}`, l.address].filter(Boolean).join(' · ');
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      {s.logo && <Img class="site-footer__logo" src={s.logo} alt={s.name} widths={[80, 160]} sizes="80px" />}
+      <span class="brand__name">{s.name}</span>
+      {s.tagline && <p class="site-footer__tagline">{s.tagline}</p>}
+    </div>
+    <div class="site-footer__right">
+      <nav class="site-footer__nav" aria-label={tr.navFooter}>
+        {pages.filter((p) => p.nav).map((p) => <a class="site-footer__navlink" href={pagePath(p.slug, prefix)}>{p.navLabel ?? p.title}</a>)}
+      </nav>
+      {s.socials.length > 0 && (
+        <div class="site-footer__follow"><div class="site-footer__socials">
+          {s.socials.map((x) => <a href={x.href} rel="noopener">{x.label}</a>)}
+        </div></div>
+      )}
+    </div>
+  </div>
+  <div class="container site-footer__legal">
+    <p class="site-footer__legal-links"><a href={privacy}>{tr.privacy}</a><a href={cookie}>{tr.cookiePolicy}</a></p>
+    <small>© {new Date().getFullYear()} {s.name}.{legalLine ? ` ${legalLine}.` : ''} {tr.rights}</small>
+  </div>
+</footer>

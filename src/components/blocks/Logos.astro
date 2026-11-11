@@ -1,0 +1,16 @@
+---
+import Img from '../Img.astro';
+const { title, items } = Astro.props;
+---
+<section class="section logos reveal">
+  <div class="container">
+    {title && <h2 class="section__title">{title}</h2>}
+    <div class="logos__row">
+      {items.map((it: any) => (
+        <div class="logos__item">
+          {it.href ? <a href={it.href} rel="noopener"><Img src={it.src} alt={it.name} widths={[160, 320]} sizes="160px" /></a> : <Img src={it.src} alt={it.name} widths={[160, 320]} sizes="160px" />}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

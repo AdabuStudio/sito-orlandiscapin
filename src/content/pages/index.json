@@ -1,0 +1,15 @@
+{
+  "slug": "index",
+  "title": "Home",
+  "order": 0,
+  "seo": { "metaDescription": "{{META_DESCRIPTION_HOME}}" },
+  "sections": [
+    { "type": "hero", "eyebrow": "{{EYEBROW}}", "title": "{{TITOLO_HERO}}", "subtitle": "{{SOTTOTITOLO_HERO}}", "cta": { "label": "{{CTA_LABEL}}", "href": "/contatti/" } },
+    { "type": "feature-grid", "title": "{{TITOLO_SEZIONE_FEATURE}}", "items": [
+      { "icon": "①", "title": "{{FEATURE_1_TITOLO}}", "text": "{{FEATURE_1_TESTO}}" },
+      { "icon": "②", "title": "{{FEATURE_2_TITOLO}}", "text": "{{FEATURE_2_TESTO}}" },
+      { "icon": "③", "title": "{{FEATURE_3_TITOLO}}", "text": "{{FEATURE_3_TESTO}}" }
+    ] },
+    { "type": "cta", "title": "{{CTA_TITOLO}}", "text": "{{CTA_TESTO}}", "cta": { "label": "{{CTA_LABEL}}", "href": "/contatti/" } }
+  ]
+}

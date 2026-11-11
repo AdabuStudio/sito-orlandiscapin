@@ -1,56 +1,71 @@
 # Project State
 
-Last updated: 2026-10-10
-Last verified commit: vedi `git log` (ramo kit-skill-frontend → main)
-Last agent: claude-code
+Last updated: 2026-11-11
+Last verified commit: TO VERIFY
+Last agent: new-client-site (onboarding)
 
 ## Summary
 
-Repo **template di istruzioni** per i siti Adabù: skill di Claude Code, protocollo VibeCode, modelli, regole e docs.
-**Nessun codice di sito qui.** Il codice v2 (Astro statico su Cloudflare Workers) è nel ramo `v2-astro-riferimento`
-e viene copiato nel repo cliente dalla skill `new-client-site`. Il template v1 è il tag `v1-static-zero-build`.
-Ramo di default: `main`.
+Sito brochure di Orlandi & Scapin Studio Tecnico (orlandiscapin.it), generato da `adabu-site-template` v2 (Astro, output statico) e
+pubblicato su Cloudflare Workers con file statici. Tipo di lavoro: Tipo 2 — redesign. Tier: static.
 
 ## Stack
 
-- Solo Markdown/YAML/JSON. Il ramo `v2-astro-riferimento` contiene Astro 7, Wrangler 4.147, Playwright e i controlli (`npm test`).
+- Astro (output statico), contenuti in content collections (`src/content/`), strato dati in `src/lib/content/`.
+- Cloudflare Workers + static assets (`wrangler.jsonc`, deploy da GitHub Actions).
 
 ## Architecture
 
-- `.claude/skills/` (nostre + kit vendorizzato, regia in `house-style`; `.agents/skills/` = collegamenti per Codex) · `.mcp.json`/`.codex/` (MCP docs Astro) · `00_PROTOCOL/` (memoria di questo repo) · `templates/client/` (protocollo e roadmap per i clienti) · `docs/` (regole, contratto contenuti, accessi, onboarding, v1).
-- Deploy dei siti: **un Worker per cliente**; `main` → produzione, `staging` e rami → Worker Previews dello stesso Worker.
-- Codice v2 (ramo `v2-astro-riferimento`): più lingue e modulo contatti (Worker solo su `/api/*`, Cloudflare Email Service).
+- Contenuti: `src/content/settings/site.json`, `pages/*.json` (sezioni a blocchi), `posts/*.md`, collezioni opzionali.
+- Mai `astro:content` fuori da `src/lib/content` (`npm run check:data-layer`).
+- SEO/GEO generati dal template (canonical, og, JSON-LD, sitemap, robots, llms.txt).
+
+## Rules & skills of this site
+
+- Regole fisse del sito: `docs/SITE-RULES.md`. Contratto contenuti SEO/GEO: `docs/CONTENT-CONTRACT.md`.
+- Skill: `.claude/skills/` (`build-astro-site`, `playwright-qa`, `house-style` = regia del kit; kit: `impeccable` (solo istruzioni), `ui-ux-pro-max`, `stop-slop`, `web-quality-audit` (+ `performance`, `core-web-vitals`, `accessibility`, `seo`, `best-practices`); `new-client-site` solo per l'onboarding). Codex: `.agents/skills/`.
+- Tipo 1 (clone): mirror statico in `mirror/`, nessuna build Astro (vedi `docs/SITE-RULES.md`).
 
 ## Current working features
 
-- Flusso onboarding documentato end-to-end in `new-client-site` e `docs/ONBOARDING-CLIENTE.md` (4 passi umani, ~5 minuti).
-- Ramo `v2-astro-riferimento`: `npm test` verde in locale (6 ott 2026); `wrangler deploy --dry-run` valido con il blocco `previews`.
+- TO VERIFY
 
 ## Partially implemented
 
-- Livello `emdash`: solo aggancio nel codice di riferimento. Regole dati decise (`docs/SITE-RULES.md` §Dati), adattatore EmDash e cestino R2 da scrivere.
+- TO VERIFY
 
 ## Known issues
 
-- Deploy reale (produzione + anteprima) mai provato su un Worker vero: da fare col primo cliente.
-- Lighthouse non ancora verificato con asset reali.
+- TO VERIFY
 
 ## Infrastructure / External services
 
-- Cloudflare (mappa accessi in `docs/CLOUDFLARE-ACCESS.md`), ClickUp, protocollo `AdabuStudio/adabu-vibecode` v6.
+- Cloudflare Worker: `orlandiscapin` (uno solo). `main` → produzione; `staging` e rami → anteprime dello stesso Worker
+  (`https://<ramo>-orlandiscapin.<sottodominio>.workers.dev`). Accessi: `docs/CLOUDFLARE-ACCESS.md`.
+- Tracciamento: {{TRACCIAMENTO}}
 
 ## Development
 
-Nessuna build in questo repo. Le verifiche del codice si fanno sul ramo `v2-astro-riferimento` (`npm install && npm test`).
+### Install
+`npm install`
+
+### Run
+`npm run dev`   (stage anteprima: editor mockup se `EDITOR_PASSWORD` è impostata)
+
+### Test
+`npm test` · QA visiva: `npm run build && npm run qa`
+
+### Build
+`npm run build` (usa `STRICT=1` su main: fallisce su placeholder `{{…}}` e asset segnaposto)
 
 ## Current priority
 
-Primo cliente pilota con `docs/ONBOARDING-CLIENTE.md`: verificare deploy di produzione e anteprima col token per-Worker.
+TO VERIFY
 
 ## Important files / directories
 
-`CLAUDE.md`, `.claude/skills/new-client-site/SKILL.md`, `docs/ONBOARDING-CLIENTE.md`, `docs/SITE-RULES.md`, `templates/client/`, `template.json`.
+- `src/content/` contenuti · `src/components/blocks/` blocchi · `tools/` generatori e controlli · `00_PROTOCOL/` memoria operativa
 
 ## Unknown / To verify
 
-- `wrangler preview` con un token che ha solo Editor sul singolo Worker (atteso ok: da confermare sul pilota).
+- Dati legali e testo privacy da confermare col cliente prima del lancio.

@@ -1,0 +1,33 @@
+name: Rebuild giornaliero (contenuti a scadenza)
+
+# I contenuti con validFrom/validUntil sono filtrati al BUILD: per farli apparire/sparire nel giorno
+# giusto il sito va ricostruito. Gira ogni giorno alle 05:00 UTC e ripubblica SOLO se
+# settings.scheduledRebuild è true (altrimenti esce subito).
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.flag.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - id: flag
+        run: |
+          v=$(node -e "try{console.log(!!JSON.parse(require('fs').readFileSync('src/content/settings/site.json','utf8')).scheduledRebuild)}catch(e){console.log(false)}")
+          echo "enabled=$v" >> "$GITHUB_OUTPUT"
+
+  redeploy:
+    needs: check
+    if: ${{ needs.check.outputs.enabled == 'true' }}
+    uses: ./.github/workflows/deploy.yml
+    with: { ref: main }
+    secrets: inherit

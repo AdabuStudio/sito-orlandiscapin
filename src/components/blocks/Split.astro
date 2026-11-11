@@ -1,0 +1,15 @@
+---
+import Img from '../Img.astro';
+import { formatText } from '../../lib/text';
+const { title, text, image, imageAlt, reverse, cta } = Astro.props;
+---
+<section class:list={['section', 'split', 'reveal', { 'split--reverse': reverse }]}>
+  <div class="container split__inner">
+    <div class="split__copy">
+      <h2 class="section__title">{title}</h2>
+      <div class="split__text" set:html={formatText(text)} />
+      {cta && <a class="btn btn--primary" href={cta.href}>{cta.label}</a>}
+    </div>
+    {image && <div class="split__media"><Img src={image} alt={imageAlt ?? ''} sizes="(min-width: 720px) 50vw, 100vw" /></div>}
+  </div>
+</section>

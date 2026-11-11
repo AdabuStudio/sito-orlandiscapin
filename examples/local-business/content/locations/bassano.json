@@ -1,0 +1,1 @@
+{ "slug": "bassano", "name": "Bassano del Grappa", "order": 2, "address": { "street": "Via Gamba 10", "city": "Bassano del Grappa", "region": "VI", "postalCode": "36061", "country": "IT" }, "geo": { "lat": 45.7664, "lng": 11.7344 }, "phone": "+39 0424 000000", "openingHours": ["Mo-Fr 15:00-19:00", "Sa 09:00-12:00"] }

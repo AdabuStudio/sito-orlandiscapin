@@ -1,0 +1,28 @@
+{
+  "slug": "corsi",
+  "title": "Corsi",
+  "order": 10,
+  "seo": { "metaDescription": "Patente B, recupero punti e corsi di guida sicura: tutti i percorsi dell'autoscuola." },
+  "geo": { "summary": "I corsi dell'autoscuola: patente B, recupero punti e guida sicura.", "keyFacts": [], "faq": [{ "q": "Quanto dura il corso patente B?", "a": "In media 3 mesi, tra teoria serale e guide pratiche." }] },
+  "sections": [
+    { "type": "feature-grid", "title": "Cosa puoi fare con noi", "items": [
+      { "icon": "🚗", "title": "Patente B", "text": "Teoria e guide, esame incluso nel percorso." },
+      { "icon": "🔁", "title": "Recupero punti", "text": "Corsi riconosciuti, iscrizione in giornata." },
+      { "icon": "🛡️", "title": "Guida sicura", "text": "Moduli pratici su pista." }
+    ] },
+    { "type": "steps", "title": "Come funziona", "items": [
+      { "title": "Iscrizione", "text": "Porti documenti e foto, al resto pensiamo noi." },
+      { "title": "Teoria", "text": "Lezioni serali e quiz ogni settimana." },
+      { "title": "Guide", "text": "Con il tuo istruttore, nei tuoi orari." }
+    ] },
+    { "type": "timeline", "title": "Le tappe", "items": [
+      { "when": "Settimana 1", "title": "Foglio rosa" },
+      { "when": "Mese 2", "title": "Esame di teoria", "text": "Quiz in sede d'esame." },
+      { "when": "Mese 3", "title": "Esame pratico" }
+    ] },
+    { "type": "faq", "title": "Domande frequenti", "items": [
+      { "q": "Posso iniziare a 17 anni?", "a": "Sì: il foglio rosa si può ottenere a 17 anni." },
+      { "q": "Si può pagare a rate?", "a": "Sì, concordiamo un piano in segreteria." }
+    ] }
+  ]
+}

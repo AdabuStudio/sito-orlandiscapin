@@ -1,0 +1,103 @@
+name: Deploy to Cloudflare Workers
+
+# Build Astro (statico) → UN Worker per cliente con soli file statici (wrangler.jsonc: assets.directory = ./dist).
+#   main        → PRODUZIONE  (PUBLIC_STAGE=production, STRICT=1)  wrangler deploy
+#   staging     → ANTEPRIMA "staging" (PUBLIC_STAGE=staging, editor mockup)  wrangler preview --name staging
+#   altri rami  → ANTEPRIMA del ramo  (PUBLIC_STAGE=staging)                  wrangler preview --name <ramo>
+#   ramo cancellato → la sua anteprima viene eliminata.
+# URL anteprime: https://<nome>-<worker>.<sottodominio>.workers.dev (noindex automatico di Cloudflare).
+# Mai push su main: si lavora su rami, la produzione esce al merge/fast-forward staging → main.
+#
+# Prerequisiti (docs/ONBOARDING-CLIENTE.md):
+#   secrets.CLOUDFLARE_API_TOKEN   token del cliente: Workers → Specified Workers (<slug>) → Editor
+#   (l'account Cloudflare è "account_id" in wrangler.jsonc: nessun secret da impostare)
+#   secrets.EDITOR_PASSWORD        password dell'editor mockup (solo anteprime; opzionale)
+# Il nome del Worker è "name" in wrangler.jsonc. Se mancano token o nome cliente il job si salta in modo pulito.
+
+on:
+  push:
+    branches: ["**"]
+  delete:
+  workflow_dispatch:
+  workflow_call:        # richiamato dal rebuild giornaliero (scheduled-rebuild.yml)
+    inputs:
+      ref: { type: string, default: main }
+    secrets:
+      CLOUDFLARE_API_TOKEN: { required: false }
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worker-deploy-${{ github.event.ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+jobs:
+  deploy:
+    if: ${{ github.event_name != 'delete' }}
+    runs-on: ubuntu-latest
+    env:
+      REF: ${{ inputs.ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ inputs.ref || github.ref }}" }
+
+      - name: Pronto per il deploy?
+        id: ready
+        run: |
+          WORKER=$(node tools/worker-name.mjs)
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ "$WORKER" = "adabu-site-template" ]; then
+            echo "Deploy saltato: manca il secret CLOUDFLARE_API_TOKEN o il repo non è inizializzato (name in wrangler.jsonc)."
+            echo "ok=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+          echo "PREVIEW=$(node tools/worker-name.mjs --preview "$REF")" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-node@v4
+        if: ${{ steps.ready.outputs.ok == 'true' }}
+        with: { node-version: "22", cache: npm }
+      - if: ${{ steps.ready.outputs.ok == 'true' }}
+        run: npm ci
+
+      - name: Build
+        if: ${{ steps.ready.outputs.ok == 'true' }}
+        run: |
+          if [ "$REF" = "main" ]; then export PUBLIC_STAGE=production STRICT=1; else export PUBLIC_STAGE=staging EDITOR_PASSWORD="${{ secrets.EDITOR_PASSWORD }}"; fi
+          if [ -d mirror ]; then
+            echo "Sito Tipo 1 (clone 1:1): deploy del mirror, nessuna build Astro"; rm -rf dist && cp -r mirror dist
+          else
+            npm run build
+          fi
+
+      - name: Produzione non deve contenere l'editor
+        if: ${{ steps.ready.outputs.ok == 'true' && env.REF == 'main' }}
+        run: |
+          if grep -rIl "AUT_EDITOR_PASSWORD" dist || [ -f dist/assets/js/editor.js ]; then echo "editor presente in produzione"; exit 1; fi
+
+      - name: Deploy produzione
+        if: ${{ steps.ready.outputs.ok == 'true' && env.REF == 'main' }}
+        run: npx wrangler deploy
+
+      - name: Anteprima del ramo
+        if: ${{ steps.ready.outputs.ok == 'true' && env.REF != 'main' }}
+        run: npx wrangler preview --name "$PREVIEW" --message "$GITHUB_SHA"
+
+  # Ramo cancellato (es. dopo il merge) → via anche la sua anteprima. Gira sul ramo di default.
+  cleanup:
+    if: ${{ github.event_name == 'delete' && github.event.ref_type == 'branch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - name: Elimina l'anteprima
+        env:
+          DELETED: ${{ github.event.ref }}
+        run: |
+          WORKER=$(node tools/worker-name.mjs)
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ "$WORKER" = "adabu-site-template" ]; then echo "Niente da eliminare"; exit 0; fi
+          npm ci --no-audit --no-fund
+          npx wrangler preview delete --name "$(node tools/worker-name.mjs --preview "$DELETED")" --skip-confirmation || echo "Anteprima già assente"

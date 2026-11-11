@@ -1,0 +1,27 @@
+---
+import { getCollectionItems, getSettings } from '../../lib/content';
+import { t } from '../../lib/i18n';
+const s = await getSettings();
+const { title, locationSlug } = Astro.props;
+const lang = Astro.props.lang ?? s.lang;
+let { lat, lng } = Astro.props;
+let label = s.name;
+if (locationSlug) {
+  const loc = (await getCollectionItems('locations', { lang })).find((l) => l.slug === locationSlug)
+    ?? (await getCollectionItems('locations')).find((l) => l.slug === locationSlug);
+  lat = loc?.geo?.lat; lng = loc?.geo?.lng; label = loc?.name ?? label;
+}
+lat ??= s.geo?.lat; lng ??= s.geo?.lng;
+const d = 0.006;
+const src = lat != null && lng != null
+  ? `https://www.openstreetmap.org/export/embed.html?bbox=${lng - d},${lat - d},${lng + d},${lat + d}&layer=mapnik&marker=${lat},${lng}`
+  : undefined;
+---
+{src && (
+  <section class="section map reveal">
+    <div class="container">
+      {title && <h2 class="section__title">{title}</h2>}
+      <iframe class="map__frame" src={src} title={`${t(lang).map}: ${label}`} loading="lazy" referrerpolicy="no-referrer"></iframe>
+    </div>
+  </section>
+)}

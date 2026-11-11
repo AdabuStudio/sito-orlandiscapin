@@ -1,0 +1,32 @@
+{
+  "name": "orlandiscapin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sito di Orlandi & Scapin Studio Tecnico (orlandiscapin.it) — generato da adabu-site-template v2.3.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "PUBLIC_STAGE=staging astro dev",
+    "build": "astro build && node tools/validate-seo.mjs",
+    "build:staging": "PUBLIC_STAGE=staging astro build",
+    "build:example": "export CONTENT_DIR=examples/local-business/content && astro build && node tools/validate-seo.mjs",
+    "check:data-layer": "node tools/check-data-layer.mjs",
+    "check:prod-clean": "node tools/check-prod-clean.mjs",
+    "test": "npm run build:example && node tools/check-example.mjs && npm run check:staging && npm run check:data-layer && npm run check:prod-clean && npm run check:contact",
+    "qa": "node qa/screenshot.mjs",
+    "assets": "node tools/gen-assets.mjs",
+    "check:staging": "export CONTENT_DIR=examples/local-business/content PUBLIC_STAGE=staging EDITOR_PASSWORD=check OUT_DIR=dist-staging && astro build && STAGE=staging node tools/validate-seo.mjs dist-staging && rm -rf dist-staging",
+    "check:contact": "node tools/check-contact.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0",
+    "wrangler": "^4.147.0",
+    "yaml": "^2.6.0",
+    "satteri": "^0.10.5"
+  }
+}

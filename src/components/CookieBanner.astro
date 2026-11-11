@@ -1,0 +1,14 @@
+---
+/** Banner informativo "solo cookie tecnici": appare solo se NON c'è iubenda (che ha il suo banner). */
+import type { Settings } from '../lib/content';
+import { privacyPath, t } from '../lib/i18n';
+const { settings, lang } = Astro.props as { settings: Settings; lang: string };
+const tr = t(lang);
+const hasIubenda = settings.tracking.iubendaSiteId && settings.tracking.iubendaCookiePolicyId && import.meta.env.PUBLIC_STAGE !== 'staging';
+---
+{!hasIubenda && (
+  <div class="cookie" id="cookie" role="dialog" aria-label={tr.cookieAria} hidden>
+    <p class="cookie__text">{tr.cookieText} <strong>{tr.cookieStrong}</strong>. {tr.cookieMore} <a href={privacyPath(settings, lang)}>{tr.privacy}</a>.</p>
+    <button class="btn btn--primary cookie__ok" type="button">{tr.cookieOk}</button>
+  </div>
+)}

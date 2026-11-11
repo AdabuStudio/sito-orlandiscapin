@@ -1,0 +1,28 @@
+---
+/**
+ * Tracciamento e consenso. ORDINE OBBLIGATORIO nel <head>:
+ *   1) Consent Mode v2 con default DENIED
+ *   2) iubenda Cookie Solution
+ *   3) GTM (solo se c'è `gtmId`)
+ * Mai tracciamento in staging. Se non c'è iubenda resta il banner informativo (solo cookie tecnici).
+ *
+ * ⚠️ BlackBox / CAPI lato server: `blackboxEnabled` NON autorizza nulla da solo. Qualsiasi invio
+ * server-side di eventi deve leggere lo stato del consenso (Consent Mode / iubenda) e non partire
+ * finché analytics_storage/ad_storage non sono "granted". Il controllo dell'ordine dei tag è
+ * verificato da tools/validate-seo.mjs.
+ */
+import type { Settings } from '../lib/content';
+const { settings } = Astro.props as { settings: Settings };
+const t = settings.tracking;
+const live = import.meta.env.PUBLIC_STAGE !== 'staging';
+const iub = live && t.iubendaSiteId && t.iubendaCookiePolicyId;
+const gtm = live && t.gtmId;
+const iubConfig = iub ? JSON.stringify({ siteId: Number(t.iubendaSiteId), cookiePolicyId: Number(t.iubendaCookiePolicyId), lang: settings.lang, storage: { useSiteId: true } }) : '';
+const consentDefault = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500});`;
+const gtmSnippet = gtm ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${t.gtmId}');` : '';
+---
+{(iub || gtm) && <script is:inline data-tracking="consent-default" set:html={consentDefault}></script>}
+{iub && <script is:inline data-tracking="iubenda-config" set:html={`var _iub=_iub||[];_iub.csConfiguration=${iubConfig};`}></script>}
+{iub && <script is:inline data-tracking="iubenda" src={`https://cs.iubenda.com/autoblocking/${t.iubendaSiteId}.js`}></script>}
+{iub && <script is:inline data-tracking="iubenda-cs" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>}
+{gtm && <script is:inline data-tracking="gtm" set:html={gtmSnippet}></script>}

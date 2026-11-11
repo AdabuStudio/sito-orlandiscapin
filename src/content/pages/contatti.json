@@ -1,0 +1,9 @@
+{
+  "slug": "contatti",
+  "title": "Contatti",
+  "order": 90,
+  "seo": { "metaDescription": "{{META_DESCRIPTION_CONTATTI}}" },
+  "sections": [
+    { "type": "contact", "title": "{{TITOLO_CONTATTI}}", "text": "{{TESTO_CONTATTI}}" }
+  ]
+}

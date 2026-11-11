@@ -1,0 +1,35 @@
+{
+  // UN Worker per cliente. Il nome = slug del cliente: lo imposta tools/init-client.mjs ed è l'unico posto in cui sta
+  // (il workflow lo legge da qui).
+  //   main            → produzione   (wrangler deploy)
+  //   staging, rami   → anteprime    (wrangler preview: stesso Worker, URL <ramo>-<slug>.<sottodominio>.workers.dev)
+  // Niente Worker "-staging" separato.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "orlandiscapin",
+  // Account Cloudflare dei siti (uguale per tutti i clienti: niente secret CLOUDFLARE_ACCOUNT_ID da impostare).
+  // Se un cliente ha un account suo, cambia solo questa riga.
+  "account_id": "46d48bd6b5a911e5eb749ab45251c746",
+  "compatibility_date": "2026-10-01",
+  // Codice del Worker: SOLO per /api/* (oggi il modulo contatti). Le pagine sono file statici e non lo invocano.
+  "main": "worker/index.js",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "workers_dev": true,
+  // Anteprime su workers.dev (Cloudflare aggiunge da solo X-Robots-Tag: noindex).
+  "preview_urls": true,
+  // Modulo contatti (blocco `contact-form`): lo configura init-client con --contatti=<email>. Vuoto = modulo spento.
+  // CONTACT_FROM deve stare su un dominio abilitato a Email Sending (docs/ONBOARDING-CLIENTE.md).
+  "vars": { "CONTACT_TO": "info@orlandiscapin.it", "CONTACT_FROM": "noreply@orlandiscapin.it", "CONTACT_FROM_NAME": "Orlandi & Scapin Studio Tecnico" },
+  "send_email": [{ "name": "EMAIL" }],
+  // Impostazioni delle anteprime (obbligatorio). Non ereditano nulla dalla produzione.
+  // CONTACT_DRY_RUN: nelle anteprime il modulo valida tutto ma non invia email.
+  // Livello `emdash`: qui vanno gli STESSI binding D1/R2 della produzione (database unico) e
+  // EMDASH_MIGRATIONS_MODE=check: vedi docs/SITE-RULES.md §Dati.
+  "previews": { "vars": { "CONTACT_DRY_RUN": "1" } },
+  // Mai "routes"/"custom_domain" qui: il dominio si collega dal pannello al go-live (il token per-Worker non può).
+  "observability": { "enabled": false }
+}

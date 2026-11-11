@@ -1,0 +1,13 @@
+---
+/** Blog nelle lingue aggiuntive (/<lingua>/blog/…): generato solo se in quella lingua ci sono articoli. */
+import BlogView from '../../../components/pages/BlogView.astro';
+import { getSettings } from '../../../lib/content';
+import { blogPaths } from '../../../lib/blog';
+export async function getStaticPaths() {
+  const s = await getSettings();
+  const out = [];
+  for (const locale of s.locales.filter((l) => l !== s.lang)) for (const p of await blogPaths(locale)) out.push({ params: { ...p.params, locale }, props: p.props });
+  return out;
+}
+---
+<BlogView {...Astro.props} />

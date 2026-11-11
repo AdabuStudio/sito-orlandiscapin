@@ -1,0 +1,17 @@
+---
+import Img from '../Img.astro';
+const { title, images } = Astro.props;
+---
+<section class="section gallery reveal">
+  <div class="container">
+    {title && <h2 class="section__title">{title}</h2>}
+    <div class="gallery__grid">
+      {images.map((im: any) => (
+        <figure class="gallery__item">
+          <Img src={im.src} alt={im.alt} widths={[400, 700, 1000]} sizes="(min-width: 720px) 33vw, 100vw" />
+          {im.caption && <figcaption>{im.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

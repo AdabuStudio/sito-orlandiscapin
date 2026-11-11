@@ -1,0 +1,11 @@
+---
+/** Privacy nelle lingue aggiuntive (/<lingua>/privacy/). Nessuna pagina se il sito ha una lingua sola. */
+import PrivacyView from '../../components/pages/PrivacyView.astro';
+import { getSettings } from '../../lib/content';
+export async function getStaticPaths() {
+  const s = await getSettings();
+  return s.locales.filter((l) => l !== s.lang).map((locale) => ({ params: { locale } }));
+}
+const { locale } = Astro.params;
+---
+<PrivacyView lang={locale!} />

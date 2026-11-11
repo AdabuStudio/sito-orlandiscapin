@@ -1,0 +1,8 @@
+---
+const { items } = Astro.props;
+---
+<section class="section stat-band reveal">
+  <div class="container stat-band__row">
+    {items.map((it: any) => <div><span class="stat-band__value">{it.value}</span><span class="stat-band__label">{it.label}</span></div>)}
+  </div>
+</section>

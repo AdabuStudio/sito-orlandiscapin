@@ -1,0 +1,13 @@
+---
+const { title, items } = Astro.props;
+---
+<section class="section faq reveal">
+  <div class="container container--narrow">
+    {title && <h2 class="section__title">{title}</h2>}
+    <div class="faq__list">
+      {items.map((it: any) => (
+        <details class="faq__item"><summary>{it.q}</summary><div class="faq__answer">{it.a}</div></details>
+      ))}
+    </div>
+  </div>
+</section>

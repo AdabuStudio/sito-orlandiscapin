@@ -1,0 +1,16 @@
+---
+const { title, items } = Astro.props;
+---
+<section class="section steps reveal">
+  <div class="container">
+    {title && <h2 class="section__title">{title}</h2>}
+    <ol class="steps__list">
+      {items.map((it: any, i: number) => (
+        <li class="steps__item">
+          <span class="steps__n">{i + 1}</span>
+          <div class="steps__body"><h3 class="steps__title">{it.title}</h3><p class="steps__text">{it.text}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
