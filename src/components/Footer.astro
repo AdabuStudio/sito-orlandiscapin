@@ -16,7 +16,7 @@ const legalLine = [l.companyName, l.vatId && `${tr.vat} ${l.vatId}`, l.address].
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      {(s.footerLogo ?? s.logo) ? <Img class="site-footer__logo" src={s.footerLogo ?? s.logo!} alt={s.name} widths={[160, 320]} sizes="160px" /> : <span class="brand__name">{s.name}</span>}
+      {(s.footerLogo ?? s.logo) ? <Img class="site-footer__logo" src={s.footerLogo ?? s.logo!} alt={s.name} widths={[180, 360, 540]} sizes="180px" /> : <span class="brand__name">{s.name}</span>}
       {s.tagline && <p class="site-footer__tagline">{s.tagline}</p>}
     </div>
     <div class="site-footer__right">
