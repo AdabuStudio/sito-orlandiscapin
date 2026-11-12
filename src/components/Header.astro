@@ -1,0 +1,34 @@
+---
+import type { Page, Settings } from '../lib/content';
+import { pagePath } from '../lib/seo/url';
+import { languageName, localePrefix, t } from '../lib/i18n';
+import Img from './Img.astro';
+interface Props { settings: Settings; pages: Page[]; lang: string; switcher: { lang: string; path: string; current: boolean }[] }
+const { settings: s, pages, lang, switcher } = Astro.props;
+const prefix = localePrefix(s, lang);
+const tr = t(lang);
+const nav = pages.filter((p) => p.nav);
+const menu = s.menu ?? [];
+const here = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href={`${prefix}/`}>
+      {s.logo ? <Img class="brand__logo" src={s.logo} alt={s.name} widths={[180, 360, 540]} sizes="180px" loading="eager" /> : <span class="brand__name">{s.name}</span>}
+    </a>
+    <div class="site-header__right">
+      <nav class="nav" id="site-nav" aria-label={tr.navMain}>
+        {menu.length > 0
+          ? menu.map((m) => <a class="nav__link" href={m.href}>{m.label}</a>)
+          : nav.map((p) => <a class="nav__link" href={pagePath(p.slug, prefix)} aria-current={here === pagePath(p.slug, prefix) ? 'page' : undefined}>{p.navLabel ?? p.title}</a>)}
+        {s.headerCta && <a class="nav__link nav__link--cta" href={s.headerCta.href}>{s.headerCta.label}</a>}
+      </nav>
+      {switcher.length > 0 && (
+        <nav class="lang-switch" aria-label={tr.language}>
+          {switcher.map((x) => <a class="lang-switch__link" href={x.path} hreflang={x.lang} lang={x.lang} title={languageName(x.lang)} aria-current={x.current ? 'true' : undefined}>{x.lang.toUpperCase()}</a>)}
+        </nav>
+      )}
+      <button class="nav-toggle" type="button" aria-label={tr.menuOpen} aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,19 @@
+---
+/** Lo studio: testo di presentazione + elenco dei servizi. */
+const { id, label, title, body, servicesTitle, services } = Astro.props;
+---
+<section class="section os-studio" id={id}>
+  <div class="container">
+    <div class="os-studio__head reveal">
+      <p class="os-label">{label}</p>
+      <h2 class="section__title">{title}</h2>
+      <p class="os-lead">{body}</p>
+    </div>
+    {servicesTitle && <h3 class="os-subhead reveal">{servicesTitle}</h3>}
+    <ul class="os-services reveal">
+      {services.map((sv: { title: string; text: string }) => (
+        <li class="os-service"><h4 class="os-service__title">{sv.title}</h4><p class="os-service__text">{sv.text}</p></li>
+      ))}
+    </ul>
+  </div>
+</section>

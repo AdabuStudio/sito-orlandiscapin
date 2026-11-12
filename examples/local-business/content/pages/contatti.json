@@ -1,0 +1,29 @@
+{
+  "slug": "contatti",
+  "title": "Contatti",
+  "order": 90,
+  "seo": {
+    "metaDescription": "Sedi, orari e contatti dell'autoscuola ad Asolo e Bassano."
+  },
+  "sections": [
+    {
+      "type": "contact",
+      "title": "Passa a trovarci",
+      "text": "Siamo aperti dal lunedì al sabato."
+    },
+    {
+      "type": "contact-form",
+      "title": "Scrivici",
+      "text": "Rispondiamo entro un giorno lavorativo."
+    },
+    {
+      "type": "locations",
+      "title": "Le nostre sedi"
+    },
+    {
+      "type": "map",
+      "title": "Dove siamo",
+      "locationSlug": "asolo"
+    }
+  ]
+}

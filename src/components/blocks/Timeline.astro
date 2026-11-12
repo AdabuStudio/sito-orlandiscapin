@@ -1,0 +1,17 @@
+---
+const { title, items } = Astro.props;
+---
+<section class="section timeline reveal">
+  <div class="container container--narrow">
+    {title && <h2 class="section__title">{title}</h2>}
+    <ol class="timeline__list">
+      {items.map((it: any) => (
+        <li class="timeline__item">
+          <span class="timeline__when">{it.when}</span>
+          <h3 class="timeline__title">{it.title}</h3>
+          {it.text && <p class="timeline__text">{it.text}</p>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

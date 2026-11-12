@@ -1,0 +1,80 @@
+{
+  "name": "Orlandi & Scapin Studio Tecnico",
+  "tagline": "Studio tecnico di progettazione a Castelfranco Veneto (TV)",
+  "lang": "it",
+  "url": "https://orlandiscapin.it",
+  "tier": "static",
+  "businessType": "ProfessionalService",
+  "scheduledRebuild": false,
+  "contact": {
+    "email": "info@orlandiscapin.it",
+    "phone": "0423 372842",
+    "address": {
+      "street": "Via dei Carpani 63",
+      "city": "Castelfranco Veneto",
+      "region": "TV",
+      "postalCode": "31033",
+      "country": "IT"
+    }
+  },
+  "socials": [
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/orlandi_scapin/"
+    }
+  ],
+  "legal": {
+    "vatId": "IT04782910267",
+    "address": "Via dei Carpani 63, 31033 Castelfranco Veneto (TV)"
+  },
+  "collections": {
+    "posts": false,
+    "locations": false,
+    "services": false,
+    "notices": false,
+    "events": false
+  },
+  "tracking": {
+    "blackboxEnabled": false
+  },
+  "design": {
+    "colors": {
+      "primary": "#1A1A1A",
+      "secondary": "#5A6066",
+      "bg": "#FFFFFF",
+      "text": "#1A1A1A",
+      "accent": "#B5322A"
+    },
+    "fonts": {
+      "display": "'Archivo', 'Helvetica Neue', Arial, sans-serif",
+      "body": "'Inter', 'Helvetica Neue', Arial, sans-serif"
+    },
+    "fontLinks": []
+  },
+  "contactForm": {
+    "enabled": true
+  },
+  "logo": "logo.png",
+  "menu": [
+    {
+      "label": "Lo studio",
+      "href": "/#studio"
+    },
+    {
+      "label": "Team",
+      "href": "/#team"
+    },
+    {
+      "label": "Lavori",
+      "href": "/#lavori"
+    },
+    {
+      "label": "Contatti",
+      "href": "/#contatti"
+    }
+  ],
+  "headerCta": {
+    "label": "Chiama",
+    "href": "tel:+390423372842"
+  }
+}

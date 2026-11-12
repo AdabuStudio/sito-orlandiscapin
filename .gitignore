@@ -19,3 +19,10 @@ __pycache__/
 *.pyc
 # Cartella di lavoro di impeccable (screenshot di review, stato build)
 .impeccable/
+
+# Repo PUBBLICO: il materiale grezzo del cliente non si versiona (nomi di privati, relazioni tecniche).
+# Le foto usate nel sito si copiano in src/assets/images con nomi neutri.
+materiale/CASE FOTOGRAFATE/
+materiale/*.pdf
+materiale/**/*.pdf
+materiale/FOTO UFFICI.png

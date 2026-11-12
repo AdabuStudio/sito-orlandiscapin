@@ -1,0 +1,26 @@
+---
+import { getPosts, getSettings } from '../../lib/content';
+import { formatDate } from '../../lib/text';
+import { postPath } from '../../lib/seo/url';
+import { localePrefix } from '../../lib/i18n';
+const s = await getSettings();
+const { title, limit } = Astro.props;
+const lang = Astro.props.lang ?? s.lang;
+const posts = (await getPosts(lang)).slice(0, limit);
+---
+{posts.length > 0 && (
+  <section class="section post-list reveal">
+    <div class="container">
+      {title && <h2 class="section__title">{title}</h2>}
+      <div class="list-cards">
+        {posts.map((p) => (
+          <article class="card">
+            <p class="card__meta">{formatDate(p.date, lang)}</p>
+            <h3 class="card__title"><a href={postPath(p.slug, localePrefix(s, lang))}>{p.title}</a></h3>
+            <p class="card__text">{p.excerpt}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

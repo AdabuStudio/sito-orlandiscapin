@@ -1,0 +1,10 @@
+---
+const { title, text, cta } = Astro.props;
+---
+<section class="section cta reveal">
+  <div class="container cta__inner">
+    <h2 class="cta__title">{title}</h2>
+    {text && <p class="cta__text">{text}</p>}
+    {cta && <a class="btn btn--primary" href={cta.href}>{cta.label}</a>}
+  </div>
+</section>

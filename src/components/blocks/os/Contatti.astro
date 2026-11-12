@@ -1,0 +1,23 @@
+---
+/** Contatti: recapiti a sinistra, modulo (blocco contact-form del template) a destra. */
+import ContactForm from '../ContactForm.astro';
+const { id, label, title, text, address, mapsUrl, phone, email, formTitle, lang } = Astro.props;
+const tel = phone.replace(/[^\d+]/g, '');
+---
+<section class="section os-contatti" id={id}>
+  <div class="container os-contatti__inner">
+    <div class="os-contatti__info reveal">
+      <p class="os-label">{label}</p>
+      <h2 class="section__title">{title}</h2>
+      {text && <p class="os-lead">{text}</p>}
+      <dl class="os-recapiti">
+        <div><dt>Indirizzo</dt><dd>{mapsUrl ? <a href={mapsUrl} rel="noopener" target="_blank">{address}</a> : address}</dd></div>
+        <div><dt>Telefono</dt><dd><a href={`tel:${tel.startsWith('+') ? tel : '+39' + tel}`}>{phone}</a></dd></div>
+        <div><dt>Email</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>
+      </dl>
+    </div>
+    <div class="os-contatti__form reveal">
+      <ContactForm title={formTitle} phone={true} lang={lang} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+/** Blog in una lingua: indice (post assente) o articolo. Usato da /blog/… e /<lingua>/blog/…. */
+import Base from '../../layouts/Base.astro';
+import Img from '../Img.astro';
+import { getSettings } from '../../lib/content';
+import type { Post } from '../../lib/content';
+import { formatDate } from '../../lib/text';
+import { blogPath, postPath } from '../../lib/seo/url';
+import { article, breadcrumb, faqPage } from '../../lib/seo/schema';
+import { localePrefix, localizedSettings, t } from '../../lib/i18n';
+
+interface Props { lang: string; post?: Post; posts: Post[]; alternates: { lang: string; path: string }[] }
+const { lang, post, posts, alternates } = Astro.props;
+const s = localizedSettings(await getSettings(), lang);
+const tr = t(lang);
+const prefix = localePrefix(s, lang);
+const crumbs = [{ name: s.name, path: `${prefix}/` }, { name: tr.blog, path: blogPath(prefix) }];
+---
+{post ? (
+  <Base title={post.title} description={post.excerpt} path={postPath(post.slug, prefix)} seo={post.seo} type="article" ogImage={post.cover} lang={lang} alternates={alternates}
+    jsonLd={[article(s, post, lang, postPath(post.slug, prefix)), breadcrumb(s, [...crumbs, { name: post.title, path: postPath(post.slug, prefix) }]), ...(post.geo.faq.length ? [faqPage(post.geo.faq)] : [])]}>
+    <article class="section">
+      <div class="container container--narrow">
+        <h1 class="section__title">{post.title}</h1>
+        <p class="post__meta">
+          <time datetime={post.date}>{formatDate(post.date, lang)}</time> · {post.geo.author ?? post.author}
+          {post.updated && <> · {tr.updatedOn} <time datetime={post.updated}>{formatDate(post.updated, lang)}</time></>}
+        </p>
+        {post.cover && <Img class="post__cover" src={post.cover} alt={post.coverAlt ?? ''} loading="eager" />}
+        {(post.geo.summary || post.geo.keyFacts.length > 0) && (
+          <aside class="geo-box" aria-label={tr.inShort}>
+            <p class="geo-box__title">{tr.inShort}</p>
+            {post.geo.summary && <p>{post.geo.summary}</p>}
+            {post.geo.keyFacts.length > 0 && <ul>{post.geo.keyFacts.map((k) => <li>{k}</li>)}</ul>}
+          </aside>
+        )}
+        <div class="post__body" set:html={post.body} />
+        {post.geo.faq.length > 0 && (
+          <section class="faq" aria-label={tr.faq}>
+            <h2 class="section__title">{tr.faq}</h2>
+            <div class="faq__list">{post.geo.faq.map((f) => <details class="faq__item"><summary>{f.q}</summary><div class="faq__answer">{f.a}</div></details>)}</div>
+          </section>
+        )}
+      </div>
+    </article>
+  </Base>
+) : (
+  <Base title={tr.blog} description={`${tr.blogDesc} ${s.name}`} path={blogPath(prefix)} jsonLd={[breadcrumb(s, crumbs)]} lang={lang} alternates={alternates}>
+    <section class="section">
+      <div class="container">
+        <h1 class="section__title">{tr.blog}</h1>
+        <div class="list-cards">
+          {posts.map((p) => (
+            <article class="card">
+              <p class="card__meta">{formatDate(p.date, lang)} · {p.author}</p>
+              <h2 class="card__title"><a href={postPath(p.slug, prefix)}>{p.title}</a></h2>
+              <p class="card__text">{p.excerpt}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </Base>
+)}

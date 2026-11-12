@@ -1,0 +1,86 @@
+{
+  "name": "Autoscuola Esempio",
+  "tagline": "Patente B in 3 mesi, senza stress",
+  "lang": "it",
+  "locales": [
+    "en"
+  ],
+  "translations": {
+    "en": {
+      "tagline": "Driving licence in 3 months, stress-free",
+      "headerCta": {
+        "label": "Enrol",
+        "href": "/en/contact/"
+      }
+    }
+  },
+  "url": "https://autoscuola-esempio.test",
+  "tier": "static",
+  "businessType": "DrivingSchool",
+  "scheduledRebuild": true,
+  "contact": {
+    "email": "info@autoscuola-esempio.test",
+    "phone": "+39 0423 000000",
+    "address": {
+      "street": "Via Roma 1",
+      "city": "Asolo",
+      "region": "TV",
+      "postalCode": "31011",
+      "country": "IT"
+    }
+  },
+  "geo": {
+    "lat": 45.8002,
+    "lng": 11.9157
+  },
+  "openingHours": [
+    "Mo-Fr 09:00-12:30",
+    "Mo-Fr 15:00-19:00",
+    "Sa 09:00-12:00"
+  ],
+  "socials": [
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/esempio"
+    }
+  ],
+  "legal": {
+    "companyName": "Esempio S.r.l.",
+    "vatId": "IT00000000000",
+    "address": "Via Roma 1, 31011 Asolo (TV)"
+  },
+  "headerCta": {
+    "label": "Iscriviti",
+    "href": "/contatti/"
+  },
+  "contactForm": {
+    "enabled": true
+  },
+  "collections": {
+    "posts": true,
+    "locations": true,
+    "services": false,
+    "notices": true,
+    "events": false
+  },
+  "tracking": {
+    "iubendaSiteId": "1234567",
+    "iubendaCookiePolicyId": "7654321",
+    "gtmId": "GTM-EXAMPLE",
+    "blackboxEnabled": true
+  },
+  "design": {
+    "colors": {
+      "primary": "#12355b",
+      "secondary": "#4a5568",
+      "bg": "#fbfaf7",
+      "text": "#14202e",
+      "accent": "#e07a1f"
+    },
+    "fonts": {
+      "display": "Georgia, 'Times New Roman', serif",
+      "body": "system-ui, -apple-system, 'Segoe UI', sans-serif"
+    },
+    "fontLinks": []
+  }
+}

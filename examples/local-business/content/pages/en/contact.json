@@ -1,0 +1,13 @@
+{
+  "lang": "en",
+  "slug": "contact",
+  "translationKey": "contatti",
+  "title": "Contact",
+  "order": 90,
+  "seo": { "metaDescription": "Branches, opening hours and contact details of the driving school in Asolo and Bassano." },
+  "sections": [
+    { "type": "contact", "title": "Come and see us", "text": "We are open Monday to Saturday." },
+    { "type": "contact-form", "title": "Write to us", "text": "We reply within one working day.", "phone": false },
+    { "type": "locations", "title": "Our branches" }
+  ]
+}

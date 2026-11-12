@@ -1,0 +1,56 @@
+---
+import type { Seo, Settings } from '../../lib/content';
+import { absolute } from '../../lib/seo/url';
+import { ogImagePath } from '../../lib/images';
+import JsonLd from './JsonLd.astro';
+
+interface Props {
+  settings: Settings; title: string; description?: string; path: string; seo?: Seo;
+  type?: 'website' | 'article'; ogImage?: string; jsonLd?: Record<string, unknown>[];
+  lang: string; alternates: { lang: string; path: string }[];
+}
+const { settings: s, title, description, path, seo, type = 'website', ogImage, jsonLd = [], lang, alternates } = Astro.props;
+// hreflang: solo nei siti multilingua e solo verso traduzioni indicizzabili; x-default = lingua principale.
+const xDefault = alternates.find((a) => a.lang === s.lang);
+const stage = import.meta.env.PUBLIC_STAGE;
+
+const isHome = path === '/' || path === `/${lang}/`;
+const fullTitle = seo?.metaTitle ?? (isHome ? `${s.name}${s.tagline ? ` — ${s.tagline}` : ''}` : `${title} — ${s.name}`);
+const desc = seo?.metaDescription ?? description ?? s.tagline ?? '';
+const canonical = seo?.canonical ?? absolute(s, path);          // per pagina, mai la home per tutte
+const imgRaw = seo?.ogImage ?? ogImage ?? s.ogImage ?? '/assets/img/og-image.jpg';
+const image = absolute(s, await ogImagePath(imgRaw));
+const noindex = stage === 'staging' || seo?.noindex === true;
+
+const c = s.design.colors, f = s.design.fonts;
+const tokens = `:root{--color-primary:${c.primary};--color-secondary:${c.secondary};--color-bg:${c.bg};--color-text:${c.text};--color-accent:${c.accent};--font-display:${f.display};--font-body:${f.body};}`;
+---
+<script is:inline>document.documentElement.classList.add('js');</script>
+<title>{fullTitle}</title>
+<meta name="description" content={desc}>
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex, nofollow">}
+<meta property="og:title" content={seo?.ogTitle ?? fullTitle}>
+<meta property="og:description" content={seo?.ogDescription ?? desc}>
+<meta property="og:type" content={type}>
+<meta property="og:site_name" content={s.name}>
+<meta property="og:url" content={canonical}>
+<meta property="og:locale" content={lang}>
+{alternates.length > 1 && alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={absolute(s, a.path)} />)}
+{alternates.length > 1 && xDefault && <link rel="alternate" hreflang="x-default" href={absolute(s, xDefault.path)} />}
+<meta property="og:image" content={image}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content={`${s.name}${s.tagline ? ` — ${s.tagline}` : ''}`}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={seo?.ogTitle ?? fullTitle}>
+<meta name="twitter:description" content={seo?.ogDescription ?? desc}>
+<meta name="twitter:image" content={image}>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+{s.design.fontLinks.map((href) => <link rel="stylesheet" href={href} />)}
+<style is:inline set:html={tokens}></style>
+<JsonLd data={jsonLd} />

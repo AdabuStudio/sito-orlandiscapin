@@ -1,0 +1,22 @@
+---
+/** Team e numeri: testo a sinistra, numeri (linee di quota) a destra, sotto la foto larga in proporzione originale. */
+import Img from '../../Img.astro';
+const { id, label, title, body, stats, image, imageAlt } = Astro.props;
+---
+<section class="section os-numeri" id={id}>
+  <div class="container">
+    <div class="os-numeri__inner">
+      <div class="os-numeri__text reveal">
+        <p class="os-label">{label}</p>
+        <h2 class="section__title">{title}</h2>
+        <p class="os-lead">{body}</p>
+      </div>
+      <dl class="os-stats reveal">
+        {stats.map((st: { value: string; label: string }) => (
+          <div class="os-stat"><dt class="os-stat__label">{st.label}</dt><dd class="os-stat__value"><span class="os-quota" aria-hidden="true"></span><span>{st.value}</span></dd></div>
+        ))}
+      </dl>
+    </div>
+    {image && <figure class="os-numeri__media reveal"><Img src={image} alt={imageAlt ?? ''} widths={[800, 1200, 1746]} sizes="(min-width: 1200px) 1168px, 100vw" /></figure>}
+  </div>
+</section>

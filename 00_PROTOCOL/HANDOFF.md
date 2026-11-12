@@ -1,25 +1,20 @@
 # Handoff
 
-## Ultima sessione (2026-10-10)
-Template 2.3.0: più lingue e modulo contatti nel codice v2 (`npm test` verde, provato in locale con `wrangler dev`), docs e skill aggiornate.
-Da verificare sul primo sito con modulo: invio reale con Email Sending.
+Data: 2026-11-11 · Ramo: `staging` · PR draft #1 (staging → main)
 
-## Sessione precedente (2026-10-09)
-Kit di skill frontend nel template (vedi `house-style` §Kit e `skills/vendor-refresh.sh`), anche per Codex (`.agents/skills`).
-Impeccable in modalità solo istruzioni (motore disattivato) al posto di frontend-design. Nuova guida `docs/MIGRAZIONE.md`.
+## Fatto
+- Sito a pagina unica costruito e approvato nelle parti viste da Federico: Hero, Lo studio, Team (foto larga nitida), Lavori (galleria unica di 24 foto mischiate, senza didascalie), Contatti con modulo.
+- Anteprima: https://staging-orlandiscapin.adabu.workers.dev (deploy automatico su push a `staging`). Editor mockup attivo con il secret `EDITOR_PASSWORD` (la password si legge dall'anteprima, non è scritta nel repo).
+- Worker `orlandiscapin` e secret `CLOUDFLARE_API_TOKEN` creati.
+- Build, validate-seo e QA verdi.
 
-## Sessione precedente (2026-10-06)
-Riordino dopo la sessione del 5 ottobre. Decisioni di Federico: un Worker per cliente (produzione + anteprime, niente staging separato),
-token per cliente, onboarding a mano guidato, al livello `emdash` un solo D1/R2 condiviso con cestino R2. `main` è il ramo di default;
-v1 fissato dai tag `v1-static-zero-build` e `v1-main-archivio`. Codice aggiornato nel ramo `v2-astro-riferimento` (`npm test` verde).
+## Stato
+- **Sessione fermata su richiesta di Federico** ("per ora ci fermiamo"). Nessun lavoro a metà.
 
-## Prossimo passo consigliato
-1. Primo cliente pilota con `docs/ONBOARDING-CLIENTE.md`; controllare nel log della CI l'URL dell'anteprima e il deploy di produzione.
+## Prossimo passo
+- Mandare l'anteprima al cliente e raccogliere le conferme in TASKS.md; poi privacy/cookie, DNS + Email Sending, go-live.
 
-## Do not touch
-- Ramo `v2-astro-riferimento` (base comune dei siti v2), tag `v1-static-zero-build` e `v1-main-archivio`, storia di `main`.
-- `00_PROTOCOL/RULES.md` (copia del protocollo v6).
-
-## To verify
-- `wrangler preview` col token per-Worker (solo Editor).
-- Il clone del ramo di riferimento da una sessione cloud limitata al repo cliente (potrebbe servire `add_repo`).
+## Note per chi riprende (Windows)
+- `npm` script con sintassi bash: lanciare con `--script-shell` di Git Bash, oppure `npx astro build` direttamente.
+- QA: `node qa/screenshot.mjs` senza argomenti (da Git Bash "/" diventa un percorso).
+- Anteprima locale: config `orlandiscapin-preview` in `CODING-WEB/.claude/launch.json` (serve `dist/`).

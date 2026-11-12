@@ -1,0 +1,18 @@
+---
+const { title, subtitle, items } = Astro.props;
+---
+<section class="section feature-grid reveal">
+  <div class="container">
+    {title && <h2 class="section__title">{title}</h2>}
+    {subtitle && <p class="section__subtitle">{subtitle}</p>}
+    <div class="grid">
+      {items.map((it: any) => (
+        <article class="card">
+          {it.icon && <div class="card__icon" aria-hidden="true">{it.icon}</div>}
+          <h3 class="card__title">{it.title}</h3>
+          <p class="card__text">{it.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

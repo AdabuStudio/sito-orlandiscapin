@@ -1,0 +1,11 @@
+---
+/**
+ * Blog nella lingua principale: indice (/blog/) e articoli (/blog/<slug>/) in un'unica rotta, così se
+ * `settings.collections.posts` è false non viene generata NESSUNA pagina /blog (niente indice vuoto in sitemap).
+ */
+import BlogView from '../../components/pages/BlogView.astro';
+import { getSettings } from '../../lib/content';
+import { blogPaths } from '../../lib/blog';
+export async function getStaticPaths() { return blogPaths((await getSettings()).lang); }
+---
+<BlogView {...Astro.props} />

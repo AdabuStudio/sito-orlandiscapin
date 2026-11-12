@@ -1,0 +1,15 @@
+---
+import Img from '../Img.astro';
+const { eyebrow, title, subtitle, cta, image, imageAlt } = Astro.props;
+---
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+      <h1 class="hero__title">{title}</h1>
+      {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+      {cta && <a class="btn btn--primary" href={cta.href}>{cta.label}</a>}
+    </div>
+    {image && <div class="hero__media"><Img src={image} alt={imageAlt ?? ''} loading="eager" sizes="(min-width: 720px) 50vw, 100vw" /></div>}
+  </div>
+</section>

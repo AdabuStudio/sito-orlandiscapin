@@ -1,0 +1,33 @@
+---
+/** Lavori: un'unica galleria con le foto di tutti gli interventi mischiate; clic = foto grande (dialog nativo).
+    Oltre `initial` foto le altre si aprono con "Mostra tutte" (senza JS si vedono tutte). */
+import Img from '../../Img.astro';
+const { id, label, title, intro, images, initial = 12, moreLabel = 'Mostra tutte le foto' } = Astro.props;
+type Im = { src: string; alt: string; featured?: boolean };
+const collapsible = initial > 0 && images.length > initial;
+---
+<section class="section os-lavori" id={id}>
+  <div class="container">
+    <div class="os-lavori__head reveal">
+      <p class="os-label">{label}</p>
+      <h2 class="section__title">{title}</h2>
+      {intro && <p class="os-lead">{intro}</p>}
+    </div>
+    <ul class="os-gallery" data-gallery data-initial={collapsible ? initial : undefined}>
+      {images.map((im: Im) => (
+        <li class:list={['os-gallery__item', { 'os-gallery__item--big': im.featured }]}>
+          <button type="button" class="os-gallery__shot" data-lightbox aria-label={`Ingrandisci: ${im.alt}`}>
+            <Img src={im.src} alt={im.alt} widths={[400, 640, 1080]} sizes={im.featured ? '(min-width: 960px) 50vw, 100vw' : '(min-width: 960px) 25vw, 50vw'} />
+          </button>
+        </li>
+      ))}
+    </ul>
+    {collapsible && <div class="os-gallery__more"><button type="button" class="btn btn--line" data-gallery-more hidden>{moreLabel} ({images.length})</button></div>}
+  </div>
+  <dialog class="os-lightbox" aria-label="Foto ingrandita">
+    <button type="button" class="os-lightbox__close" aria-label="Chiudi">×</button>
+    <button type="button" class="os-lightbox__nav os-lightbox__nav--prev" aria-label="Foto precedente">‹</button>
+    <img class="os-lightbox__img" alt="" />
+    <button type="button" class="os-lightbox__nav os-lightbox__nav--next" aria-label="Foto successiva">›</button>
+  </dialog>
+</section>

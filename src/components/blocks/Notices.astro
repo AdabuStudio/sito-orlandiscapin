@@ -1,0 +1,15 @@
+---
+import { getCollectionItems } from '../../lib/content';
+const { title, lang } = Astro.props;
+const items = await getCollectionItems('notices', { lang });
+---
+{items.length > 0 && (
+  <section class="section notices reveal">
+    <div class="container container--narrow">
+      {title && <h2 class="section__title">{title}</h2>}
+      {items.map((n) => (
+        <div class="notice"><h3 class="notice__title">{n.title}</h3><p>{n.text}{n.link && <> <a href={n.link.href}>{n.link.label}</a></>}</p></div>
+      ))}
+    </div>
+  </section>
+)}

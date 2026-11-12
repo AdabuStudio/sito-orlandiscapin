@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "slug": "index",
+  "title": "Home",
+  "order": 0,
+  "seo": { "metaDescription": "Driving school in Asolo: category B licence courses, lessons with experienced instructors." },
+  "geo": {
+    "summary": "Autoscuola Esempio in Asolo prepares students for the category B driving licence with evening theory classes and personal driving lessons.",
+    "keyFacts": ["Branches in Asolo and Bassano", "Licence in about 3 months"],
+    "faq": []
+  },
+  "sections": [
+    { "type": "hero", "eyebrow": "In Asolo since 1998", "title": "Your driving licence, stress-free", "subtitle": "Evening theory classes and the same instructor from start to finish.", "cta": { "label": "Book a trial lesson", "href": "/en/contact/" }, "image": "hero.jpg", "imageAlt": "Student driving with the instructor" },
+    { "type": "notices", "title": "Notices" }
+  ]
+}

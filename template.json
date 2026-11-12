@@ -3,8 +3,14 @@
   "version": "2.3.0",
   "engine": "astro",
   "tier": "static",
-  "client": null,
+  "client": {
+    "slug": "orlandiscapin",
+    "name": "Orlandi & Scapin Studio Tecnico",
+    "domain": "orlandiscapin.it",
+    "initialized": "2026-11-11",
+    "tipo": 2
+  },
   "legacy_v1_tag": "v1-static-zero-build",
   "reference_branch": "v2-astro-riferimento",
-  "contents": "instructions-only"
+  "contents": "site"
 }

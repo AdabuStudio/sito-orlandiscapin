@@ -1,30 +1,17 @@
 # Tasks
 
-## NOW
+## Da confermare con il cliente (prima del go-live)
+- [ ] Galleria Lavori: escluse 3 foto "prima/durante i lavori"; rimetterle solo se il cliente vuole un prima/dopo.
+- [ ] Righe descrittive degli 8 servizi (il sito vecchio aveva solo i nomi).
+- [ ] Numeri dello studio: "100% clienti soddisfatti" va tenuto? (affermazione non verificabile).
+- [ ] La foto `FOTO UFFICI` (sezione Team) è la sede dello studio? Se sì, alt e didascalia da aggiornare.
+- [ ] Ragione sociale esatta per footer e privacy (ora: nome + P.IVA IT04782910267).
 
-- [ ] Primo cliente pilota (`docs/ONBOARDING-CLIENTE.md`). Fatto quando: anteprima `staging-<slug>.<sottodominio>.workers.dev` e produzione rispondono 200 col token per-Worker.
+## Go-live
+- [ ] Tracciamento/cookie: iubenda (o privacy del template) e GTM se servono.
+- [ ] DNS di orlandiscapin.it su Cloudflare (ricopiare MX/SPF/DKIM) e Email Sending sul dominio per il modulo.
+- [ ] Merge `staging` → `main`, Custom Domain sul Worker, vecchio Horizons staccato (docs/MIGRAZIONE.md §5).
+- [ ] Search Console + sitemap.
 
-## NEXT
-
-- [ ] Siti v1 nati dal vecchio default (asolo100km, asolourbantrail): non hanno `main` come ramo di default; valutare per sito (restano v1).
-
-## BLOCKED
-
-- Nessuno.
-
-## BACKLOG
-
-- Testi dell'interfaccia per altre lingue oltre a it/en (`src/lib/i18n.ts`) quando servono.
-- Adattatore EmDash (tier `emdash`) + adattatore storage R2 con cestino `_cestino/` e regola lifecycle 1 anno (`docs/SITE-RULES.md` §Dati).
-- Lighthouse ≥95 con asset reali (sul primo cliente).
-- Cancellare il ramo `setup-base` quando nessuno lo usa più.
-- Proporre in `adabu-vibecode` v7 l'estensione `sync.clickup` per i siti (doc roadmap + cartella cliente).
-
-## RECENTLY DONE
-
-- 2026-10-10 · Template 2.3.0: più lingue (`settings.locales`, hreflang, selettore) e modulo contatti (Worker su `/api/contact`, Email Service, antispam, prova nelle anteprime); `account_id` in `wrangler.jsonc`.
-
-- 2026-10-09 · Kit di skill frontend (impeccable solo istruzioni, ui-ux-pro-max, stop-slop, web-quality-skills) + MCP docs Astro, per Claude e Codex; guida `docs/MIGRAZIONE.md`.
-
-- 2026-10-06 · Riordino: `main` ramo di default, tag v1, un Worker per cliente con anteprime, onboarding ~5 minuti, regole dati emdash.
-- 2026-10-05 · Codice v2 implementato, testato e spostato nel ramo `v2-astro-riferimento`; template ridotto a istruzioni.
+## Tecnico
+- [ ] Riportare il fix `fileURLToPath` di `astro.config.mjs` sul ramo `v2-astro-riferimento` del template (e su Orostyle).

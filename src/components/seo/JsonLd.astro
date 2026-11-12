@@ -1,0 +1,6 @@
+---
+/** Inietta uno o più oggetti JSON-LD. `<` è escapato per non chiudere mai lo <script>. */
+const { data } = Astro.props as { data: Record<string, unknown> | Record<string, unknown>[] };
+const list = Array.isArray(data) ? data : [data];
+---
+{list.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d).replace(/</g, '\\u003c')} />)}

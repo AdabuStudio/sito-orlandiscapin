@@ -1,0 +1,6 @@
+---
+import PrivacyView from '../components/pages/PrivacyView.astro';
+import { getSettings } from '../lib/content';
+const s = await getSettings();
+---
+<PrivacyView lang={s.lang} />

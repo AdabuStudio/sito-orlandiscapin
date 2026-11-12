@@ -1,0 +1,1 @@
+{ "slug": "asolo", "name": "Asolo", "order": 1, "address": { "street": "Via Roma 1", "city": "Asolo", "region": "TV", "postalCode": "31011", "country": "IT" }, "geo": { "lat": 45.8002, "lng": 11.9157 }, "phone": "+39 0423 000000", "openingHours": ["Mo-Fr 09:00-12:30", "Mo-Fr 15:00-19:00"] }

@@ -1,0 +1,18 @@
+{
+  "slug": "index",
+  "title": "Home",
+  "order": 0,
+  "seo": { "metaDescription": "Autoscuola ad Asolo: corsi patente B, guide con istruttori esperti e foglio rosa in giornata." },
+  "geo": {
+    "summary": "Autoscuola Esempio ad Asolo prepara alla patente B con corsi di teoria serali e guide pratiche personalizzate.",
+    "keyFacts": ["Sede ad Asolo e a Bassano", "Patente B in circa 3 mesi", "Foglio rosa in giornata"],
+    "faq": []
+  },
+  "sections": [
+    { "type": "hero", "eyebrow": "Dal 1998 ad Asolo", "title": "La patente B, senza stress", "subtitle": "Teoria serale, guide con lo stesso istruttore dall'inizio alla fine.", "cta": { "label": "Prenota una lezione di prova", "href": "/contatti/" }, "image": "hero.jpg", "imageAlt": "Allievo alla guida con l'istruttore" },
+    { "type": "stat-band", "items": [{ "value": "25+", "label": "anni di esperienza" }, { "value": "4.000", "label": "patenti conseguite" }, { "value": "92%", "label": "promossi al primo esame" }, { "value": "2", "label": "sedi" }] },
+    { "type": "notices", "title": "Avvisi" },
+    { "type": "split", "title": "Un istruttore, un percorso", "text": "Ogni allievo ha **un solo istruttore** per tutte le guide.\n\n- Orari flessibili\n- Simulazioni d'esame ogni settimana", "image": "split.jpg", "imageAlt": "Auto della scuola guida", "cta": { "label": "Scopri i corsi", "href": "/corsi/" } },
+    { "type": "post-list", "title": "Dal blog", "limit": 2 }
+  ]
+}

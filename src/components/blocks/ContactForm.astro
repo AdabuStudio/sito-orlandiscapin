@@ -1,0 +1,41 @@
+---
+/**
+ * Modulo contatti. Invia a /api/contact (codice del Worker in worker/contact.js), che manda l'email al cliente.
+ * Funziona anche senza JavaScript (il Worker risponde con una pagina); con JS mostra l'esito sul posto.
+ * Visibile solo se `settings.contactForm.enabled`. Nelle anteprime non parte nessuna email (modalità prova).
+ */
+import { getSettings } from '../../lib/content';
+import { privacyPath, t } from '../../lib/i18n';
+const s = await getSettings();
+const { title, text, phone = true, successMessage } = Astro.props;
+const lang: string = Astro.props.lang ?? s.lang;
+const tr = t(lang);
+const enabled = s.contactForm.enabled;
+if (!enabled) console.warn('[contact-form] blocco presente ma settings.contactForm.enabled è false: modulo non mostrato.');
+const siteKey = s.contactForm.turnstileSiteKey;
+---
+{enabled && (
+  <section class="section contact-form reveal" id="contatto">
+    <div class="container container--narrow">
+      {title && <h2 class="section__title">{title}</h2>}
+      {text && <p class="contact-form__text">{text}</p>}
+      <form class="form" method="post" action="/api/contact" data-contact-form
+        data-msg-ok={successMessage ?? tr.formOk} data-msg-test={tr.formTest} data-msg-invalid={tr.formInvalid}
+        data-msg-error={tr.formError} data-msg-sending={tr.formSending}>
+        <input type="hidden" name="lang" value={lang} />
+        <input type="hidden" name="page" value={Astro.url.pathname} />
+        <input type="hidden" name="elapsed" value="" />
+        <div class="form__hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+        <div class="form__field"><label for="cf-name">{tr.formName}</label><input id="cf-name" name="name" type="text" required maxlength="120" autocomplete="name" /></div>
+        <div class="form__field"><label for="cf-email">{tr.formEmail}</label><input id="cf-email" name="email" type="email" required maxlength="254" autocomplete="email" /></div>
+        {phone && <div class="form__field"><label for="cf-phone">{tr.formPhone} <span class="form__opt">({tr.formOptional})</span></label><input id="cf-phone" name="phone" type="tel" maxlength="40" autocomplete="tel" /></div>}
+        <div class="form__field"><label for="cf-message">{tr.formMessage}</label><textarea id="cf-message" name="message" rows="6" required maxlength="5000"></textarea></div>
+        <div class="form__check"><input id="cf-consent" name="consent" type="checkbox" required /><label for="cf-consent">{tr.formConsentBefore} <a href={privacyPath(s, lang)}>{tr.privacy}</a> {tr.formConsentAfter}</label></div>
+        {siteKey && <div class="cf-turnstile" data-sitekey={siteKey} data-language={lang}></div>}
+        <button class="btn btn--primary form__submit" type="submit">{tr.formSend}</button>
+        <p class="form__status" role="status" aria-live="polite"></p>
+      </form>
+      {siteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+    </div>
+  </section>
+)}

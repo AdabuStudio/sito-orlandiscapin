@@ -1,0 +1,15 @@
+---
+import { getCollectionItems } from '../../lib/content';
+const { title, lang } = Astro.props;
+const items = await getCollectionItems('services', { lang });
+---
+{items.length > 0 && (
+  <section class="section services reveal">
+    <div class="container">
+      {title && <h2 class="section__title">{title}</h2>}
+      <div class="grid">
+        {items.map((s) => <article class="card"><h3 class="card__title">{s.title}</h3><p class="card__text">{s.summary}</p></article>)}
+      </div>
+    </div>
+  </section>
+)}

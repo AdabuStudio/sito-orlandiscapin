@@ -1,0 +1,10 @@
+---
+import { formatText } from '../../lib/text';
+const { title, body } = Astro.props;
+---
+<section class="section text reveal">
+  <div class="container container--narrow">
+    {title && <h2 class="section__title">{title}</h2>}
+    <div class="text__body" set:html={formatText(body)} />
+  </div>
+</section>
